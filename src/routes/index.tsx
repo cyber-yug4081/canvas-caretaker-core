@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight, BrainCircuit, ChevronDown, ChevronRight, CircleCheck, CircleUserRound,
-  Globe2, HeartPulse, Languages, Leaf, MapPin, Mic, Paperclip, Play,
-  Search, Send, ShieldCheck, Sparkles, Square, Stethoscope, X,
+  Globe2, HeartPulse, Leaf, MapPin, Mic, Paperclip,
+  Search, Send, ShieldCheck, Square, Stethoscope, X,
 } from "lucide-react";
-import { FormEvent, ReactNode, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
+import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
 import backgroundAsset from "../assets/sudha-setu-background.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
