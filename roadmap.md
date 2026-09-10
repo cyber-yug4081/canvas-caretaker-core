@@ -8,3 +8,6 @@
 - [x] Match supplied visual system and background
 - [x] Validate desktop, tablet, and mobile layouts
 - [x] Add a cinematic botanical homepage matching the supplied reference- [x] Merge Charak Vaani chat and voice consultation into one page with fixed Q&A answers
+- [x] Medicines page from uploaded list with expandable details
+- [x] Diseases and hospitals as expandable lists with larger text
+- [x] Charak Vaani reachable only from the home button
