@@ -1,17 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight, BrainCircuit, ChevronDown, ChevronRight, CircleCheck, CircleUserRound,
-  Globe2, HeartPulse, Leaf, MapPin, Mic, Paperclip,
-  Search, Send, ShieldCheck, Square, Stethoscope, X,
+  ArrowRight, BrainCircuit, ChevronDown, CircleUserRound,
+  Globe2, HeartPulse, Leaf, MapPin, Mic, Paperclip, Pill,
+  Search, Send, Square, Stethoscope,
 } from "lucide-react";
 import { FormEvent, useMemo, useRef, useState } from "react";
 import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
+import { medicines, diseases, splitList } from "../lib/medical-data";
 import backgroundAsset from "../assets/sudha-setu-background.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
     { title: "Sudha Setu | Ayurvedic Health Guidance" },
-    { name: "description", content: "Explore Ayurvedic guidance, hospitals, symptoms, and Charak Vaani voice consultation." },
+    { name: "description", content: "Explore Ayurvedic guidance, hospitals, medicines, symptoms, and Charak Vaani voice consultation." },
     { property: "og:title", content: "Sudha Setu | Ayurvedic Health Guidance" },
     { property: "og:description", content: "Ancient wisdom and modern care through Ayurvedic guidance." },
     { property: "og:type", content: "website" },
@@ -20,27 +21,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type View = "home" | "hospitals" | "diseases" | "chat";
+type View = "home" | "hospitals" | "diseases" | "medicines" | "chat";
 
 const hospitals = [
-  ["All India Institute of Ayurveda", "New Delhi, Delhi", "Government Ayurveda Hospital", "2.3 km", ["General Ayurveda", "Panchakarma", "Research"]],
-  ["National Institute of Ayurveda", "Jaipur, Rajasthan", "Premier Ayurveda Institute", "4.7 km", ["Panchakarma", "Kayachikitsa", "Education"]],
-  ["State Ayurveda Hospital", "Lucknow, Uttar Pradesh", "Government Ayurveda Center", "6.1 km", ["General Treatment", "Herbal Therapy", "Outpatient"]],
-  ["Kerala Ayurveda Hospital", "Thiruvananthapuram, Kerala", "Traditional Kerala Ayurveda Care", "8.4 km", ["Panchakarma", "Rejuvenation", "Wellness Retreat"]],
-  ["Sri Sri Ayurveda Hospital", "Bengaluru, Karnataka", "Holistic Healing & Wellness", "10.2 km", ["Lifestyle Disorders", "Panchakarma", "Yoga & Wellness"]],
-] as const;
-
-const conditions = [
-  ["Common Cold", "Sneezing, runny nose, throat irritation", "Respiratory", "🫁"],
-  ["Acidity (Amlapitta)", "Burning sensation, bloating, sour belching", "Digestive", "◒"],
-  ["Headache (Shirashoola)", "Pain in head, stress, heaviness", "Neurological", "◉"],
-  ["Joint Pain (Sandhivata)", "Stiffness, swelling, pain in joints", "Musculoskeletal", "◈"],
-  ["Diabetes (Madhumeha)", "Frequent urination, increased thirst", "Metabolic", "♦"],
-  ["Skin Allergy (Twak Vikara)", "Itching, rashes, redness", "Skin", "✋"],
-  ["Insomnia (Nidranasha)", "Difficulty in sleeping, restlessness", "Mental Health", "☾"],
-  ["High Blood Pressure (Raktachap)", "Headache, dizziness, fatigue", "Cardiovascular", "♡"],
-  ["Asthma (Tamaka Shwasa)", "Breathlessness, wheezing", "Respiratory", "🫁"],
-  ["Indigestion (Ajirna)", "Fullness, gas, discomfort", "Digestive", "◒"],
+  ["All India Institute of Ayurveda", "New Delhi, Delhi", "Government Ayurveda Hospital", "2.3 km", ["General Ayurveda", "Panchakarma", "Research"], "Mathura Road, Gautampuri, Sarita Vihar, New Delhi 110076", "+91 11 2963 7500", "Open 24 hours · OPD 8:00 AM – 2:00 PM"],
+  ["National Institute of Ayurveda", "Jaipur, Rajasthan", "Premier Ayurveda Institute", "4.7 km", ["Panchakarma", "Kayachikitsa", "Education"], "Amer Road, Jorawar Singh Gate, Jaipur 302002", "+91 141 263 5709", "Open 24 hours · OPD 8:00 AM – 1:00 PM"],
+  ["State Ayurveda Hospital", "Lucknow, Uttar Pradesh", "Government Ayurveda Center", "6.1 km", ["General Treatment", "Herbal Therapy", "Outpatient"], "Tulsi Das Marg, Lucknow 226001", "+91 522 261 4321", "OPD 9:00 AM – 4:00 PM"],
+  ["Kerala Ayurveda Hospital", "Thiruvananthapuram, Kerala", "Traditional Kerala Ayurveda Care", "8.4 km", ["Panchakarma", "Rejuvenation", "Wellness Retreat"], "Poojappura, Thiruvananthapuram 695012", "+91 471 234 5566", "Open 24 hours · Therapy 7:00 AM – 6:00 PM"],
+  ["Sri Sri Ayurveda Hospital", "Bengaluru, Karnataka", "Holistic Healing & Wellness", "10.2 km", ["Lifestyle Disorders", "Panchakarma", "Yoga & Wellness"], "Art of Living Ashram, Kanakapura Road, Bengaluru 560082", "+91 80 6726 2626", "OPD 8:00 AM – 7:00 PM"],
 ] as const;
 
 function ActionButton({ children, className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -54,9 +42,9 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
       <span><strong>Sudha Setu</strong><small>Ancient Wisdom. Modern Care.</small></span>
     </ActionButton>
     <nav aria-label="Main navigation">
-      {(["home", "hospitals", "diseases", "chat"] as View[]).map((item) =>
+      {(["home", "hospitals", "diseases", "medicines"] as View[]).map((item) =>
         <ActionButton key={item} className={view === item ? "nav-active" : ""} onClick={() => setView(item)}>
-          {item === "chat" ? "Charak Vaani" : item.charAt(0).toUpperCase() + item.slice(1)}
+          {item.charAt(0).toUpperCase() + item.slice(1)}
         </ActionButton>)}
     </nav>
     <div className="brand-quote"><em>“Speak Healthier<br/>Live Better”</em><span>— ❧ —</span></div>
@@ -169,29 +157,119 @@ function ConsultScreen() {
   </main>;
 }
 
+function DetailBlock({ label, value }: { label: string; value: string }) {
+  const items = splitList(value);
+  return <div className="detail-block">
+    <h3>{label}</h3>
+    {items.length > 1
+      ? <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
+      : <p>{items[0] ?? "—"}</p>}
+  </div>;
+}
+
 function HospitalsScreen() {
-  const [query, setQuery] = useState(""); const [city, setCity] = useState("All Cities");
+  const [query, setQuery] = useState("");
+  const [city, setCity] = useState("All Cities");
+  const [open, setOpen] = useState(0);
   const filtered = hospitals.filter((h) => (h[0] + h[1] + h[2]).toLowerCase().includes(query.toLowerCase()) && (city === "All Cities" || h[1].includes(city)));
-  return <main className="hospitals-layout screen-stage"><aside className="side-quote"><em>“Healing begins with<br/>the right guidance.”</em><span>— ❧ —</span></aside>
-    <section className="directory"><div className="screen-title"><Leaf/><h1>Ayurveda Hospitals</h1><p>Find trusted Ayurveda hospitals and wellness centers near you</p></div>
-      <div className="glass-panel list-panel"><div className="search-row"><label className="searchbox"><Search/><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search by name, city or specialty..."/></label><label className="citybox"><MapPin/><select value={city} onChange={(e)=>setCity(e.target.value)}><option>All Cities</option><option>Delhi</option><option>Jaipur</option><option>Lucknow</option><option>Kerala</option><option>Bengaluru</option></select><ChevronDown/></label></div>
-        <div className="hospital-list">{filtered.map((h, i) => <article className="hospital-row" key={h[0]}><div className={`hospital-thumb hospital-${i}`}><Stethoscope/></div><div className="hospital-info"><h2>{h[0]}</h2><p><MapPin/> {h[1]}</p><span>{h[2]}</span><div className="tags">{h[4].map(t=><small key={t}>{t}</small>)}</div></div><div className="hospital-actions"><span><MapPin/> {h[3]}</span><ActionButton onClick={()=>alert(`${h[0]} details`)}>View Details <ChevronRight/></ActionButton></div></article>)}</div>
-      </div></section><aside className="care-mark"><span>♨</span><strong>TRADITIONAL<br/>CARE<br/>MODERN ACCESS</strong></aside></main>;
+  return <main className="diseases-layout screen-stage">
+    <section className="glass-panel disease-panel">
+      <div className="screen-title disease-title"><Leaf/><div><h1>Ayurveda Hospitals</h1><p>Find trusted Ayurveda hospitals and wellness centers near you.</p></div></div>
+      <div className="search-row">
+        <label className="searchbox"><Search/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by name, city or specialty..."/></label>
+        <label className="citybox"><MapPin/><select value={city} onChange={(e) => setCity(e.target.value)}><option>All Cities</option><option>Delhi</option><option>Jaipur</option><option>Lucknow</option><option>Kerala</option><option>Bengaluru</option></select><ChevronDown/></label>
+      </div>
+      <div className="condition-list">
+        {filtered.map((h, i) => <article className={`condition ${open === i ? "expanded" : ""}`} key={h[0]}>
+          <ActionButton className="condition-head" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
+            <span>{i + 1}</span><b><Stethoscope/></b>
+            <div><h2>{h[0]}</h2><p>{h[1]} · {h[2]}</p></div>
+            <small>{h[3]}</small><ChevronDown/>
+          </ActionButton>
+          {open === i && <div className="detail-grid">
+            <DetailBlock label="Address" value={h[5]}/>
+            <DetailBlock label="Contact" value={h[6]}/>
+            <DetailBlock label="Timings" value={h[7]}/>
+            <DetailBlock label="Specialties" value={h[4].join("; ")}/>
+            <DetailBlock label="Type" value={h[2]}/>
+            <DetailBlock label="Distance" value={h[3]}/>
+          </div>}
+        </article>)}
+      </div>
+    </section>
+  </main>;
 }
 
 function DiseasesScreen() {
-  const [open, setOpen] = useState(1); const [query, setQuery] = useState(""); const [category, setCategory] = useState("All Categories");
-  const rows = useMemo(() => conditions.map((c,i)=>({c,i})).filter(({c}) => (c[0]+c[1]).toLowerCase().includes(query.toLowerCase()) && (category === "All Categories" || c[2] === category)), [query, category]);
-  return <main className="diseases-layout screen-stage"><section className="glass-panel disease-panel"><div className="screen-title disease-title"><Leaf/><div><h1>Diseases &amp; Symptoms</h1><p>Explore common health concerns and get Ayurvedic guidance.</p></div></div>
-    <div className="search-row"><label className="searchbox"><Search/><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search disease, symptom or keyword..."/></label><label className="citybox"><select value={category} onChange={(e)=>setCategory(e.target.value)}><option>All Categories</option>{[...new Set(conditions.map(c=>c[2]))].map(c=><option key={c}>{c}</option>)}</select><ChevronDown/></label></div>
-    <div className="condition-list">{rows.map(({c,i}) => <article className={`condition ${open===i ? "expanded" : ""}`} key={c[0]}><ActionButton className="condition-head" onClick={()=>setOpen(open===i ? -1 : i)} aria-expanded={open===i}><span>{i+1}</span><b>{c[3]}</b><div><h2>{c[0]}</h2><p>{c[1]}</p></div><small>{c[2]}</small><ChevronDown/></ActionButton>{open===i && <div className="guidance-grid"><Guidance kind="do" title="What to Do" items={["Drink lukewarm water","Consume cooling foods (cucumber, coconut)","Eat small meals on time","Use natural remedies like Amla, Licorice","Practice breathing exercises (Pranayama)"]}/><Guidance kind="avoid" title="What Not to Do" items={["Avoid spicy, oily and fried food","Don’t skip meals","Avoid excessive caffeine and tea","Don’t lie down immediately after eating","Avoid alcohol and smoking"]}/><div className="guidance threat"><h3><ShieldCheck/>Threat Level</h3><strong>Low to Moderate</strong><div className="threat-meter"><i/><i/><i/><i/><i/><i/><i/></div><p>Usually manageable with lifestyle changes and Ayurvedic care.</p></div></div>}</article>)}</div>
-  </section><aside className="balance-mark"><Leaf/><span>Balance<br/>Through<br/>Knowledge</span></aside></main>;
+  const [open, setOpen] = useState(0);
+  const [query, setQuery] = useState("");
+  const rows = useMemo(() => diseases.filter((d) => (d.name + d.symptoms).toLowerCase().includes(query.toLowerCase())), [query]);
+  return <main className="diseases-layout screen-stage">
+    <section className="glass-panel disease-panel">
+      <div className="screen-title disease-title"><Leaf/><div><h1>Diseases &amp; Symptoms</h1><p>Tap any condition to open its full guidance.</p></div></div>
+      <div className="search-row single">
+        <label className="searchbox"><Search/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search disease, symptom or keyword..."/></label>
+      </div>
+      <div className="condition-list">
+        {rows.map((d, i) => <article className={`condition ${open === i ? "expanded" : ""}`} key={d.name}>
+          <ActionButton className="condition-head" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
+            <span>{i + 1}</span><b><HeartPulse/></b>
+            <div><h2>{d.name}</h2><p>{d.symptoms}</p></div>
+            <small>Condition</small><ChevronDown/>
+          </ActionButton>
+          {open === i && <div className="detail-grid">
+            <DetailBlock label="Description" value={d.description}/>
+            <DetailBlock label="Key symptoms" value={d.symptoms}/>
+            <DetailBlock label="Common care / OTC support" value={d.care}/>
+            <DetailBlock label="When to see a doctor" value={d.doctor}/>
+            <DetailBlock label="What to avoid" value={d.avoid}/>
+          </div>}
+        </article>)}
+      </div>
+    </section>
+  </main>;
 }
 
-function Guidance({kind,title,items}:{kind:string,title:string,items:string[]}) { return <div className={`guidance ${kind}`}><h3>{kind === "do" ? <CircleCheck/> : <X/>}{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></div>; }
-
+function MedicinesScreen() {
+  const [open, setOpen] = useState(0);
+  const [query, setQuery] = useState("");
+  const rows = useMemo(() => medicines.filter((m) => (m.name + m.uses).toLowerCase().includes(query.toLowerCase())), [query]);
+  return <main className="diseases-layout screen-stage">
+    <section className="glass-panel disease-panel">
+      <div className="screen-title disease-title"><Pill/><div><h1>Medicines</h1><p>Tap a medicine to see its uses, side effects and warnings.</p></div></div>
+      <div className="search-row single">
+        <label className="searchbox"><Search/><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search medicine name or use..."/></label>
+      </div>
+      <div className="condition-list">
+        {rows.map((m, i) => <article className={`condition ${open === i ? "expanded" : ""}`} key={m.name}>
+          <ActionButton className="condition-head" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
+            <span>{i + 1}</span><b><Pill/></b>
+            <div><h2>{m.name}</h2><p>{m.composition}</p></div>
+            <small>{m.prescription.toLowerCase().startsWith("y") ? "Prescription" : "Over the counter"}</small><ChevronDown/>
+          </ActionButton>
+          {open === i && <div className="detail-grid">
+            <DetailBlock label="Uses" value={m.uses}/>
+            <DetailBlock label="Dosage" value={m.dosage}/>
+            <DetailBlock label="Side effects" value={m.sideEffects}/>
+            <DetailBlock label="Warnings" value={m.warnings}/>
+            <DetailBlock label="Prescription required" value={m.prescription}/>
+            <DetailBlock label="Alternatives" value={m.alternatives}/>
+          </div>}
+        </article>)}
+      </div>
+    </section>
+  </main>;
+}
 
 function Index() {
   const [view, setView] = useState<View>("home");
-  return <div className={`app-shell ${view === "home" ? "is-home" : ""}`} style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}><div className="background"/><Brand view={view} setView={setView}/>{view === "home" && <HomeScreen setView={setView}/>} {view === "hospitals" && <HospitalsScreen/>}{view === "diseases" && <DiseasesScreen/>}{view === "chat" && <ConsultScreen/>}</div>;
+  return <div className={`app-shell ${view === "home" ? "is-home" : ""}`} style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}>
+    <div className="background"/>
+    <Brand view={view} setView={setView}/>
+    {view === "home" && <HomeScreen setView={setView}/>}
+    {view === "hospitals" && <HospitalsScreen/>}
+    {view === "diseases" && <DiseasesScreen/>}
+    {view === "medicines" && <MedicinesScreen/>}
+    {view === "chat" && <ConsultScreen/>}
+  </div>;
 }
