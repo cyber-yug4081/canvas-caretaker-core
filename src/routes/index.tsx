@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   AlertCircle,
   AlertTriangle,
+  ArrowLeft,
   ArrowRight,
   CheckCircle2,
   ChevronDown,
@@ -21,7 +22,9 @@ import {
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
 import { medicines, diseases, splitList } from "../lib/medical-data";
-import backgroundAsset from "../assets/sudha-setu-background.jpeg.asset.json";
+
+const BACKGROUND_IMAGE_URL =
+  "https://res.cloudinary.com/dbge8xram/image/upload/v1789050012/background_image_olitaq.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -113,17 +116,54 @@ function ActionButton({
 
 function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
   return (
-    <header className={`brandbar ${view === "home" ? "home-brandbar" : ""}`}>
-      <ActionButton className="brand" onClick={() => setView("home")} aria-label="Sudha Setu home">
-        <span className="brand-leaves">
-          <Leaf />
-          <Leaf />
-        </span>
-        <span>
-          <strong>Sudha Setu</strong>
-          <small>Ancient Wisdom. Modern Care.</small>
-        </span>
-      </ActionButton>
+    <header className={`brandbar ${view === "home" ? "home-brandbar" : "inner-brandbar"}`}>
+      <div className="brandbar-left">
+        {view !== "home" && (
+          <ActionButton
+            id="top-back-btn"
+            className="back-button"
+            onClick={() => setView("home")}
+            aria-label="Back to home"
+            title="Back to Home"
+          >
+            <ArrowLeft />
+          </ActionButton>
+        )}
+        <ActionButton
+          id="brand-logo-btn"
+          className={`brand ${view !== "home" ? "brand-logo-only" : ""}`}
+          onClick={() => setView("home")}
+          aria-label="Sudha Setu home"
+        >
+          <img
+            src="https://res.cloudinary.com/dbge8xram/image/upload/v1789054782/imggg_v3wkpx.jpg"
+            alt="Sudha Setu"
+            className="brand-logo-img"
+            referrerPolicy="no-referrer"
+          />
+          {view === "home" && (
+            <span className="brand-text-container">
+              <strong className="brand-title-emblem" aria-label="SUDHA SETU">
+                <span className="brand-word">
+                  <span className="brand-char">S</span>
+                  <span className="brand-char">U</span>
+                  <span className="brand-char">D</span>
+                  <span className="brand-char">H</span>
+                  <span className="brand-char">A</span>
+                </span>
+                <span className="brand-word-spacer" aria-hidden="true" />
+                <span className="brand-word">
+                  <span className="brand-char">S</span>
+                  <span className="brand-char">E</span>
+                  <span className="brand-char">T</span>
+                  <span className="brand-char">U</span>
+                </span>
+              </strong>
+              <small>Ancient Wisdom. Modern Care.</small>
+            </span>
+          )}
+        </ActionButton>
+      </div>
       <nav aria-label="Main navigation">
         {(["home", "hospitals", "diseases", "medicines"] as View[]).map((item) => (
           <ActionButton
@@ -135,14 +175,6 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
           </ActionButton>
         ))}
       </nav>
-      <div className="brand-quote">
-        <em>
-          “Speak Healthier
-          <br />
-          Live Better”
-        </em>
-        <span>— ❧ —</span>
-      </div>
     </header>
   );
 }
@@ -154,10 +186,10 @@ function HomeScreen({ setView }: { setView: (view: View) => void }) {
         <p className="home-kicker">
           Ayurveda <span>×</span> Technology <span>×</span> A Healthier Tomorrow
         </p>
-        <h1>
-          Ancient Wisdom
+        <h1 id="home-main-heading">
+          सर्वे सन्तु
           <br />
-          <em>Modern Care</em>
+          <em>निरामयाः</em>
         </h1>
         <p className="home-intro">
           Bridging Ayurveda and Technology
@@ -419,7 +451,7 @@ function DetailBlock({ label, value }: { label: string; value: string }) {
 function HospitalsScreen() {
   const [query, setQuery] = useState("");
   const [city, setCity] = useState("All Cities");
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(-1);
   const filtered = hospitals.filter(
     (h) =>
       (h[0] + h[1] + h[2]).toLowerCase().includes(query.toLowerCase()) &&
@@ -560,7 +592,7 @@ function getConditionThreat(name: string): {
 }
 
 function DiseasesScreen() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(-1);
   const [query, setQuery] = useState("");
   const rows = useMemo(
     () => diseases.filter((d) => (d.name + d.symptoms).toLowerCase().includes(query.toLowerCase())),
@@ -604,9 +636,10 @@ function DiseasesScreen() {
                     <h2>{d.name}</h2>
                     <p>{d.symptoms}</p>
                   </div>
-                  <span className={`threat-badge-pill threat-badge-${threat.level.toLowerCase()}`}>
-                    {threat.level}
-                  </span>
+                  <span
+                    className={`threat-badge-pill threat-badge-${threat.level.toLowerCase()}`}
+                    aria-label={`Threat level: ${threat.level}`}
+                  />
                   <ChevronDown />
                 </ActionButton>
                 {open === i && (
@@ -639,7 +672,7 @@ function DiseasesScreen() {
 }
 
 function MedicinesScreen() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(-1);
   const [query, setQuery] = useState("");
   const rows = useMemo(
     () => medicines.filter((m) => (m.name + m.uses).toLowerCase().includes(query.toLowerCase())),
@@ -711,7 +744,7 @@ function Index() {
   return (
     <div
       className={`app-shell ${view === "home" ? "is-home" : ""}`}
-      style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}
+      style={{ "--site-background": `url(${BACKGROUND_IMAGE_URL})` } as React.CSSProperties}
     >
       <div className="background" />
       <Brand view={view} setView={setView} />
