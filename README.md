@@ -1,14 +1,44 @@
-# Welcome to your Lovable project
+# Pixel Perfect Blueprint
+
+,DO NOT START CODING UNTIL YOU HAVE ANALYZED ALL PROVIDED SLIDES, BACKGROUND, COLORS, AND TYPOGRAPHY.
+
+First internally map every screen into:
+
+- viewport dimensions
+
+- layout grid
+
+- containers
+
+- coordinates
+
+- spacing
+
+- typography
+
+- colors
+
+- effects
+
+- components
+
+- interactions
+
+Then implement.
+
+Do not give me a rough first version.
+
+Build the closest possible visual reproduction from the beginning.
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/52364426-7dba-4cfc-a04a-4239f48349b0).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +50,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
