@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  Bone, Bot, ChevronDown, ChevronRight, CircleCheck, CircleUserRound,
+  ArrowRight, BrainCircuit, ChevronDown, ChevronRight, CircleCheck, CircleUserRound,
   Globe2, HeartPulse, Languages, Leaf, MapPin, Mic, Paperclip, Play,
   Search, Send, ShieldCheck, Sparkles, Square, Stethoscope, X,
 } from "lucide-react";
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type View = "voice" | "hospitals" | "diseases" | "chat";
+type View = "home" | "voice" | "hospitals" | "diseases" | "chat";
 
 const hospitals = [
   ["All India Institute of Ayurveda", "New Delhi, Delhi", "Government Ayurveda Hospital", "2.3 km", ["General Ayurveda", "Panchakarma", "Research"]],
@@ -47,19 +47,38 @@ function ActionButton({ children, className = "", ...props }: React.ButtonHTMLAt
 }
 
 function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
-  return <header className="brandbar">
-    <ActionButton className="brand" onClick={() => setView("voice")} aria-label="Sudha Setu home">
+  return <header className={`brandbar ${view === "home" ? "home-brandbar" : ""}`}>
+    <ActionButton className="brand" onClick={() => setView("home")} aria-label="Sudha Setu home">
       <span className="brand-leaves"><Leaf/><Leaf/></span>
       <span><strong>Sudha Setu</strong><small>Ancient Wisdom. Modern Care.</small></span>
     </ActionButton>
     <nav aria-label="Main navigation">
-      {(["voice", "hospitals", "diseases", "chat"] as View[]).map((item) =>
+      {(["home", "voice", "hospitals", "diseases", "chat"] as View[]).map((item) =>
         <ActionButton key={item} className={view === item ? "nav-active" : ""} onClick={() => setView(item)}>
-          {item === "chat" ? "Charak Vaani" : item.charAt(0).toUpperCase() + item.slice(1)}
+          {item === "chat" ? "Charak Vaani" : item === "voice" ? "Consult" : item.charAt(0).toUpperCase() + item.slice(1)}
         </ActionButton>)}
     </nav>
     <div className="brand-quote"><em>“Speak Healthier<br/>Live Better”</em><span>— ❧ —</span></div>
   </header>;
+}
+
+function HomeScreen({ setView }: { setView: (view: View) => void }) {
+  return <main className="home-stage">
+    <section className="home-copy">
+      <p className="home-kicker">Ayurveda <span>×</span> Technology <span>×</span> A Healthier Tomorrow</p>
+      <h1>Ancient Wisdom<br/><em>Modern Care</em></h1>
+      <p className="home-intro">Bridging Ayurveda and Technology<br/>for a healthier tomorrow.</p>
+      <ActionButton className="home-cta" onClick={() => setView("chat")}>
+        <Leaf/><span>Charak Vaani</span><ArrowRight/>
+      </ActionButton>
+    </section>
+    <section className="home-visual" aria-label="Ayurvedic care powered by natural herbs and smart technology">
+      <div className="orbit orbit-one"/><div className="orbit orbit-two"/>
+      <div className="benefit benefit-herbs"><span><Leaf/></span><strong>Natural<br/>Herbs</strong></div>
+      <div className="benefit benefit-tech"><span><BrainCircuit/></span><strong>Smart<br/>Technology</strong></div>
+      <div className="benefit benefit-care"><span><HeartPulse/></span><strong>Better<br/>Wellness</strong></div>
+    </section>
+  </main>;
 }
 
 function LeafAvatar({ user = false }: { user?: boolean }) {
@@ -132,6 +151,6 @@ function ChatScreen() {
 }
 
 function Index() {
-  const [view, setView] = useState<View>("voice");
-  return <div className="app-shell" style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}><div className="background"/><Brand view={view} setView={setView}/>{view === "voice" && <VoiceScreen/>}{view === "hospitals" && <HospitalsScreen/>}{view === "diseases" && <DiseasesScreen/>}{view === "chat" && <ChatScreen/>}</div>;
+  const [view, setView] = useState<View>("home");
+  return <div className={`app-shell ${view === "home" ? "is-home" : ""}`} style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}><div className="background"/><Brand view={view} setView={setView}/>{view === "home" && <HomeScreen setView={setView}/>} {view === "voice" && <VoiceScreen/>}{view === "hospitals" && <HospitalsScreen/>}{view === "diseases" && <DiseasesScreen/>}{view === "chat" && <ChatScreen/>}</div>;
 }
