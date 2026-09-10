@@ -138,7 +138,8 @@ export const answers: Answer[] = [
       "Probiotic dahi; rest.",
       "Anti-emetic/diarrhea medicine sirf doctor ke prescription par.",
     ],
-    redFlags: "Dehydration (kam peshab, sukha muh, chakkar), khoon/mucus, tez pet dard, high fever.",
+    redFlags:
+      "Dehydration (kam peshab, sukha muh, chakkar), khoon/mucus, tez pet dard, high fever.",
     threat: "🟡 Moderate — dehydration/red signs me 🔴 High.",
   },
   {
