@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight, BrainCircuit, ChevronDown, ChevronRight, CircleCheck, CircleUserRound,
-  Globe2, HeartPulse, Languages, Leaf, MapPin, Mic, Paperclip, Play,
-  Search, Send, ShieldCheck, Sparkles, Square, Stethoscope, X,
+  Globe2, HeartPulse, Leaf, MapPin, Mic, Paperclip,
+  Search, Send, ShieldCheck, Square, Stethoscope, X,
 } from "lucide-react";
-import { FormEvent, ReactNode, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
+import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
 import backgroundAsset from "../assets/sudha-setu-background.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type View = "home" | "voice" | "hospitals" | "diseases" | "chat";
+type View = "home" | "hospitals" | "diseases" | "chat";
 
 const hospitals = [
   ["All India Institute of Ayurveda", "New Delhi, Delhi", "Government Ayurveda Hospital", "2.3 km", ["General Ayurveda", "Panchakarma", "Research"]],
@@ -53,9 +54,9 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
       <span><strong>Sudha Setu</strong><small>Ancient Wisdom. Modern Care.</small></span>
     </ActionButton>
     <nav aria-label="Main navigation">
-      {(["home", "voice", "hospitals", "diseases", "chat"] as View[]).map((item) =>
+      {(["home", "hospitals", "diseases", "chat"] as View[]).map((item) =>
         <ActionButton key={item} className={view === item ? "nav-active" : ""} onClick={() => setView(item)}>
-          {item === "chat" ? "Charak Vaani" : item === "voice" ? "Consult" : item.charAt(0).toUpperCase() + item.slice(1)}
+          {item === "chat" ? "Charak Vaani" : item.charAt(0).toUpperCase() + item.slice(1)}
         </ActionButton>)}
     </nav>
     <div className="brand-quote"><em>“Speak Healthier<br/>Live Better”</em><span>— ❧ —</span></div>
@@ -95,24 +96,75 @@ function Composer({ onSend }: { onSend?: (value: string) => void }) {
   </form>;
 }
 
-function VoiceScreen() {
+type Msg = { role: "user" | "ai"; text?: string; answer?: Answer; time: string };
+const clockTime = () => new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+function AnswerBubble({ answer }: { answer: Answer }) {
+  return <>
+    <strong>Namaste! 🙏</strong>
+    <p>{answer.doctor}</p>
+    <p><b>Possible causes:</b> {answer.causes}</p>
+    <p><b>{answer.cureTitle}:</b></p>
+    <ul>{answer.cure.map((c) => <li key={c}>{c}</li>)}</ul>
+    <p><b>Red flags:</b> {answer.redFlags}</p>
+    <p><b>Threat Level:</b> {answer.threat}</p>
+  </>;
+}
+
+function ConsultScreen() {
+  const [mode, setMode] = useState<"talk" | "chat">("chat");
   const [listening, setListening] = useState(false);
-  const [messages, setMessages] = useState<string[]>([]);
-  return <main className="voice-layout screen-stage">
-    <section className="glass-panel voice-panel">
-      <div className="screen-title"><Leaf/><h1>Voice Consultation</h1><p>Speak your health concerns naturally, and let Charak Vaani guide you.</p></div>
-      <div className={`voice-orb-wrap ${listening ? "is-listening" : ""}`}>
-        <div className="waveform left" aria-hidden="true"/><ActionButton className="voice-orb" onClick={() => setListening(!listening)} aria-label={listening ? "Stop listening" : "Start listening"}>{listening ? <Square/> : <Mic/>}</ActionButton><div className="waveform" aria-hidden="true"/>
+  const recognitionRef = useRef<any>(null);
+  const [messages, setMessages] = useState<Msg[]>([
+    { role: "ai", text: "Namaste! 🙏 Main Charak Vaani hoon. Apni takleef bolkar ya likhkar bataiye.", time: "10:12 AM" },
+  ]);
+
+  const ask = (text: string) => {
+    const match = findAnswer(text);
+    setMessages((old) => [
+      ...old,
+      { role: "user", text, time: clockTime() },
+      match ? { role: "ai", answer: match, time: clockTime() } : { role: "ai", text: NOT_TRAINED, time: clockTime() },
+    ]);
+  };
+
+  const toggleListening = () => {
+    const SR = typeof window !== "undefined" && ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
+    if (!SR) { setListening(false); ask("Voice input is not supported in this browser."); return; }
+    if (listening) { recognitionRef.current?.stop(); setListening(false); return; }
+    const recognition = new SR();
+    recognition.lang = "hi-IN";
+    recognition.interimResults = false;
+    recognition.onresult = (event: any) => { const said = event.results[0]?.[0]?.transcript; if (said) ask(said); };
+    recognition.onend = () => setListening(false);
+    recognitionRef.current = recognition;
+    recognition.start();
+    setListening(true);
+  };
+
+  return <main className="chat-layout screen-stage">
+    <section className="glass-panel chat-panel consult-panel">
+      <div className="screen-title consult-head"><Leaf/><h1>Charak Vaani</h1><p>Talk or chat with your Ayurvedic companion.</p></div>
+      <div className="mode-toggle" role="tablist">
+        <ActionButton className={mode === "talk" ? "mode-active" : ""} role="tab" aria-selected={mode === "talk"} onClick={() => setMode("talk")}><Mic/> Talk</ActionButton>
+        <ActionButton className={mode === "chat" ? "mode-active" : ""} role="tab" aria-selected={mode === "chat"} onClick={() => setMode("chat")}><Send/> Chat</ActionButton>
       </div>
-      <strong className="tap-label">{listening ? "Tap to Stop" : "Tap to Speak"}</strong><small className="listening-label">{listening ? "Listening..." : "Ready"}</small>
-      <label className="select-pill"><Globe2/><select aria-label="Language"><option>Auto-detect language (English)</option><option>हिन्दी (Hindi)</option></select><ChevronDown/></label>
-      <div className="voice-conversation">
-        <div className="message-row user"><div className="message-bubble"><div className="audio"><Play/><span className="audio-wave"/><small>00:08</small></div><p>I have a headache since morning and feeling a bit nauseous. What can I do?</p><time>10:24 AM</time></div><LeafAvatar user/></div>
-        <div className="message-row"><LeafAvatar/><div className="message-bubble ai"><strong>Namaste! 🙏</strong><p>Based on your symptoms, this could be due to Pitta imbalance, dehydration, or mild indigestion.<br/>Here are some recommendations:</p><ul><li>Drink lukewarm water</li><li>Rest in a calm environment</li><li>You can try Brahmi or Shankhpushpi (after consulting a physician)</li><li>Avoid spicy and oily food</li></ul><p>If symptoms persist or worsen, please consult a nearby Ayurveda specialist.</p><time>10:24 AM</time></div></div>
-        {messages.map((m, i) => <div className="message-row user" key={`${m}-${i}`}><div className="message-bubble"><p>{m}</p><time>Now</time></div><LeafAvatar user/></div>)}
+      {mode === "talk" && <div className="talk-block">
+        <div className={`voice-orb-wrap ${listening ? "is-listening" : ""}`}>
+          <div className="waveform left" aria-hidden="true"/>
+          <ActionButton className="voice-orb" onClick={toggleListening} aria-label={listening ? "Stop listening" : "Start listening"}>{listening ? <Square/> : <Mic/>}</ActionButton>
+          <div className="waveform" aria-hidden="true"/>
+        </div>
+        <strong className="tap-label">{listening ? "Tap to Stop" : "Tap to Speak"}</strong>
+        <small className="listening-label">{listening ? "Listening..." : "Ready"}</small>
+        <label className="select-pill"><Globe2/><select aria-label="Language"><option>Auto-detect language (English)</option><option>हिन्दी (Hindi)</option></select><ChevronDown/></label>
+      </div>}
+      <div className="chat-stream">
+        {messages.map((m, i) => m.role === "user"
+          ? <div className="message-row user" key={i}><div className="message-bubble"><p>{m.text}</p><time>{m.time}</time></div><LeafAvatar user/></div>
+          : <div className="message-row" key={i}><LeafAvatar/><div className="message-bubble ai">{m.answer ? <AnswerBubble answer={m.answer}/> : <p>{m.text}</p>}<time>{m.time}</time></div></div>)}
       </div>
-      <Composer onSend={(m) => setMessages((old) => [...old, m])}/>
-      <aside className="trust-rail"><div><ShieldCheck/><span>Safe</span></div><div><CircleCheck/><span>Trusted</span></div><div><Sparkles/><span>Ayurvedic<br/>Guidance</span></div></aside>
+      <Composer onSend={ask}/>
     </section>
   </main>;
 }
@@ -138,19 +190,8 @@ function DiseasesScreen() {
 
 function Guidance({kind,title,items}:{kind:string,title:string,items:string[]}) { return <div className={`guidance ${kind}`}><h3>{kind === "do" ? <CircleCheck/> : <X/>}{title}</h3><ul>{items.map(x=><li key={x}>{x}</li>)}</ul></div>; }
 
-function ChatScreen() {
-  const [messages, setMessages] = useState<string[]>([]);
-  return <main className="chat-layout screen-stage"><section className="glass-panel chat-panel"><span className="today">Today</span><div className="chat-stream">
-    <div className="message-row"><LeafAvatar/><div className="message-bubble ai"><p>Namaste! 🙏<br/>I’m Charak Vaani, your Ayurvedic companion.<br/>Ask me anything about herbs, health, lifestyle or Ayurveda.</p><time>10:12 AM</time></div></div>
-    <div className="message-row user"><div className="message-bubble"><p>What are the benefits of Tulsi?</p><time>10:13 AM</time></div><LeafAvatar user/></div>
-    <div className="message-row"><LeafAvatar/><div className="message-bubble ai"><p>Tulsi (Ocimum sanctum) is a powerful herb in Ayurveda.<br/>It helps with:</p><ul><li>Boosting immunity</li><li>Reducing stress and anxiety</li><li>Supporting respiratory health</li><li>Purifying the body and mind</li></ul><p>Would you like to know how to use Tulsi in daily life? 🌱</p><time>10:13 AM</time></div></div>
-    <div className="message-row user"><div className="message-bubble"><p>Yes, how can I include it in my daily routine?</p><time>10:14 AM</time></div><LeafAvatar user/></div>
-    <div className="message-row"><LeafAvatar/><div className="message-bubble ai"><p>You can include Tulsi in your daily routine by:</p><ul><li>Drinking Tulsi tea (boil 5–7 leaves in water)</li><li>Chewing fresh leaves in the morning</li><li>Adding it to warm water or herbal concoctions</li><li>Using Tulsi drops during seasonal changes</li></ul><p>It’s best taken in moderation. 🌱</p><time>10:14 AM</time></div></div>
-    {messages.map((m,i)=><div className="message-row user" key={`${m}-${i}`}><div className="message-bubble"><p>{m}</p><time>Now</time></div><LeafAvatar user/></div>)}
-    </div><Composer onSend={(m)=>setMessages(old=>[...old,m])}/></section></main>;
-}
 
 function Index() {
   const [view, setView] = useState<View>("home");
-  return <div className={`app-shell ${view === "home" ? "is-home" : ""}`} style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}><div className="background"/><Brand view={view} setView={setView}/>{view === "home" && <HomeScreen setView={setView}/>} {view === "voice" && <VoiceScreen/>}{view === "hospitals" && <HospitalsScreen/>}{view === "diseases" && <DiseasesScreen/>}{view === "chat" && <ChatScreen/>}</div>;
+  return <div className={`app-shell ${view === "home" ? "is-home" : ""}`} style={{ "--site-background": `url(${backgroundAsset.url})` } as React.CSSProperties}><div className="background"/><Brand view={view} setView={setView}/>{view === "home" && <HomeScreen setView={setView}/>} {view === "hospitals" && <HospitalsScreen/>}{view === "diseases" && <DiseasesScreen/>}{view === "chat" && <ConsultScreen/>}</div>;
 }

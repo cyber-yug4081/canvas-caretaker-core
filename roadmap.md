@@ -7,4 +7,4 @@
 - [x] Build Charak Vaani chat and composer
 - [x] Match supplied visual system and background
 - [x] Validate desktop, tablet, and mobile layouts
-- [x] Add a cinematic botanical homepage matching the supplied reference
+- [x] Add a cinematic botanical homepage matching the supplied reference- [x] Merge Charak Vaani chat and voice consultation into one page with fixed Q&A answers
