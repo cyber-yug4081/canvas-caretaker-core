@@ -55,7 +55,7 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
     <nav aria-label="Main navigation">
       {(["voice", "hospitals", "diseases", "chat"] as View[]).map((item) =>
         <ActionButton key={item} className={view === item ? "nav-active" : ""} onClick={() => setView(item)}>
-          {item === "chat" ? "Charak Vaani" : item[0].toUpperCase() + item.slice(1)}
+          {item === "chat" ? "Charak Vaani" : item.charAt(0).toUpperCase() + item.slice(1)}
         </ActionButton>)}
     </nav>
     <div className="brand-quote"><em>“Speak Healthier<br/>Live Better”</em><span>— ❧ —</span></div>
