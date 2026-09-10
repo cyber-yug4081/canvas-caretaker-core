@@ -1,0 +1,9 @@
+# Sudha Setu build
+
+- [x] Analyze all supplied slides, background, colors, and typography
+- [x] Build Voice Consultation screen and controls
+- [x] Build Ayurveda Hospitals search and filtering
+- [x] Build Diseases & Symptoms filtering and accordion
+- [x] Build Charak Vaani chat and composer
+- [x] Match supplied visual system and background
+- [x] Validate desktop, tablet, and mobile layouts
