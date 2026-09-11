@@ -24,7 +24,10 @@ import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
 import { medicines, diseases, splitList } from "../lib/medical-data";
 
 const BACKGROUND_IMAGE_URL =
-  "https://res.cloudinary.com/qfs26zk0/image/upload/v1789058036/ChatGPT_Image_Sep_10_2026_10_01_27_PM.png";
+  "https://res.cloudinary.com/qfs26zk0/image/upload/v1789090018/ChatGPT_Image_Sep_11_2026_06_56_18_AM.png";
+
+const RIGHT_HERO_IMAGE_URL =
+  "https://res.cloudinary.com/qfs26zk0/image/upload/v1789090031/ChatGPT_Image_Sep_11_2026_06_56_35_AM.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,6 +36,11 @@ export const Route = createFileRoute("/")({
         rel: "preload",
         as: "image",
         href: BACKGROUND_IMAGE_URL,
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: RIGHT_HERO_IMAGE_URL,
       },
     ],
     meta: [
@@ -192,8 +200,8 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
 
 function HomeScreen({ setView }: { setView: (view: View) => void }) {
   return (
-    <main className="home-stage">
-      <section className="home-copy">
+    <main className="home-stage" id="home-main-stage">
+      <section className="home-copy" id="home-hero-copy">
         <p className="home-kicker">
           Ayurveda <span>×</span> Technology <span>×</span> A Healthier Tomorrow
         </p>
@@ -207,12 +215,27 @@ function HomeScreen({ setView }: { setView: (view: View) => void }) {
           <br />
           for a healthier tomorrow.
         </p>
-        <ActionButton className="home-cta" onClick={() => setView("chat")}>
+        <ActionButton
+          className="home-cta"
+          onClick={() => setView("chat")}
+          id="charak-vaani-cta-btn"
+        >
           <Leaf />
           <span>Charak Vaani</span>
           <ArrowRight />
         </ActionButton>
       </section>
+      <div className="home-hero-visual" id="home-hero-visual">
+        <div className="home-hero-img-wrap" id="home-hero-img-wrap">
+          <img
+            src={RIGHT_HERO_IMAGE_URL}
+            alt="Ayurvedic Healthcare Illustration"
+            className="home-hero-img"
+            id="home-hero-img"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </div>
     </main>
   );
 }
@@ -364,57 +387,62 @@ function ConsultScreen() {
   };
 
   return (
-    <main className="chat-layout screen-stage">
-      <section className="glass-panel chat-panel consult-panel">
-        <div className="screen-title consult-head">
-          <Leaf />
-          <h1>Charak Vaani</h1>
-          <p>Talk or chat with your Ayurvedic companion.</p>
-        </div>
-        <div className="mode-toggle" role="tablist">
-          <ActionButton
-            className={mode === "talk" ? "mode-active" : ""}
-            role="tab"
-            aria-selected={mode === "talk"}
-            onClick={() => setMode("talk")}
-          >
-            <Mic /> Talk
-          </ActionButton>
-          <ActionButton
-            className={mode === "chat" ? "mode-active" : ""}
-            role="tab"
-            aria-selected={mode === "chat"}
-            onClick={() => setMode("chat")}
-          >
-            <Send /> Chat
-          </ActionButton>
-        </div>
-        {mode === "talk" && (
-          <div className="talk-block">
-            <div className={`voice-orb-wrap ${listening ? "is-listening" : ""}`}>
-              <div className="waveform left" aria-hidden="true" />
-              <ActionButton
-                className="voice-orb"
-                onClick={toggleListening}
-                aria-label={listening ? "Stop listening" : "Start listening"}
-              >
-                {listening ? <Square /> : <Mic />}
-              </ActionButton>
-              <div className="waveform" aria-hidden="true" />
-            </div>
-            <strong className="tap-label">{listening ? "Tap to Stop" : "Tap to Speak"}</strong>
-            <small className="listening-label">{listening ? "Listening..." : "Ready"}</small>
-            <label className="select-pill">
-              <Globe2 />
-              <select aria-label="Language">
-                <option>Auto-detect language (English)</option>
-                <option>हिन्दी (Hindi)</option>
-              </select>
-              <ChevronDown />
-            </label>
+    <main className="chat-layout screen-stage" id="chat-main-stage">
+      <section className="glass-panel chat-panel consult-panel" id="chat-panel">
+        <div className="panel-fixed-header chat-fixed-header" id="chat-fixed-header">
+          <div className="screen-title consult-head" id="chat-screen-title">
+            <Leaf />
+            <h1>Charak Vaani</h1>
+            <p>Talk or chat with your Ayurvedic companion.</p>
           </div>
-        )}
-        <div className="chat-stream" ref={chatStreamRef}>
+          <div className="mode-toggle" role="tablist" id="chat-mode-toggle">
+            <ActionButton
+              className={mode === "talk" ? "mode-active" : ""}
+              role="tab"
+              aria-selected={mode === "talk"}
+              onClick={() => setMode("talk")}
+              id="mode-talk-tab"
+            >
+              <Mic /> Talk
+            </ActionButton>
+            <ActionButton
+              className={mode === "chat" ? "mode-active" : ""}
+              role="tab"
+              aria-selected={mode === "chat"}
+              onClick={() => setMode("chat")}
+              id="mode-chat-tab"
+            >
+              <Send /> Chat
+            </ActionButton>
+          </div>
+          {mode === "talk" && (
+            <div className="talk-block" id="chat-talk-block">
+              <div className={`voice-orb-wrap ${listening ? "is-listening" : ""}`}>
+                <div className="waveform left" aria-hidden="true" />
+                <ActionButton
+                  className="voice-orb"
+                  onClick={toggleListening}
+                  aria-label={listening ? "Stop listening" : "Start listening"}
+                  id="voice-orb-btn"
+                >
+                  {listening ? <Square /> : <Mic />}
+                </ActionButton>
+                <div className="waveform" aria-hidden="true" />
+              </div>
+              <strong className="tap-label">{listening ? "Tap to Stop" : "Tap to Speak"}</strong>
+              <small className="listening-label">{listening ? "Listening..." : "Ready"}</small>
+              <label className="select-pill">
+                <Globe2 />
+                <select aria-label="Language">
+                  <option>Auto-detect language (English)</option>
+                  <option>हिन्दी (Hindi)</option>
+                </select>
+                <ChevronDown />
+              </label>
+            </div>
+          )}
+        </div>
+        <div className="chat-stream" ref={chatStreamRef} id="chat-messages-stream">
           {messages.map((m, i) =>
             m.role === "user" ? (
               <div className="message-row user" key={i}>
@@ -469,38 +497,45 @@ function HospitalsScreen() {
       (city === "All Cities" || h[1].includes(city)),
   );
   return (
-    <main className="hospitals-layout diseases-layout screen-stage">
-      <section className="glass-panel disease-panel hospital-panel">
-        <div className="screen-title disease-title">
-          <Leaf />
-          <div>
-            <h1>Ayurveda Hospitals</h1>
-            <p>Find trusted Ayurveda hospitals and wellness centers near you.</p>
+    <main className="hospitals-layout diseases-layout screen-stage" id="hospitals-main-stage">
+      <section className="glass-panel disease-panel hospital-panel" id="hospitals-panel">
+        <div className="panel-fixed-header" id="hospitals-fixed-header">
+          <div className="screen-title disease-title" id="hospitals-screen-title">
+            <Leaf />
+            <div>
+              <h1>Ayurveda Hospitals</h1>
+              <p>Find trusted Ayurveda hospitals and wellness centers near you.</p>
+            </div>
+          </div>
+          <div className="search-row" id="hospitals-search-row">
+            <label className="searchbox" id="hospitals-searchbox">
+              <Search />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search by name, city or specialty..."
+                id="hospitals-search-input"
+              />
+            </label>
+            <label className="citybox" id="hospitals-citybox">
+              <MapPin />
+              <select
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                id="hospitals-city-select"
+              >
+                <option>All Cities</option>
+                <option>Delhi</option>
+                <option>Jaipur</option>
+                <option>Lucknow</option>
+                <option>Kerala</option>
+                <option>Bengaluru</option>
+              </select>
+              <ChevronDown />
+            </label>
           </div>
         </div>
-        <div className="search-row">
-          <label className="searchbox">
-            <Search />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by name, city or specialty..."
-            />
-          </label>
-          <label className="citybox">
-            <MapPin />
-            <select value={city} onChange={(e) => setCity(e.target.value)}>
-              <option>All Cities</option>
-              <option>Delhi</option>
-              <option>Jaipur</option>
-              <option>Lucknow</option>
-              <option>Kerala</option>
-              <option>Bengaluru</option>
-            </select>
-            <ChevronDown />
-          </label>
-        </div>
-        <div className="condition-list">
+        <div className="condition-list" id="hospitals-list">
           {filtered.map((h, i) => (
             <article className={`condition ${open === i ? "expanded" : ""}`} key={h[0]}>
               <ActionButton
@@ -602,81 +637,208 @@ function getConditionThreat(name: string): {
   };
 }
 
+const CONDITION_CATEGORIES: Record<string, string[]> = {
+  All: [],
+  "Digestive & Gut": [
+    "Acidity",
+    "Indigestion",
+    "Mild diarrhea",
+    "Constipation",
+    "Gas problem",
+    "Vomiting",
+    "Mild gastritis",
+    "Mild food poisoning",
+    "Mild stomach infection",
+    "Worm infection",
+  ],
+  "Respiratory & Cold": [
+    "Common cold",
+    "Cough",
+    "Sore throat",
+    "Mild sinusitis",
+    "Mild asthma",
+    "Mild nasal blockage",
+    "Mild throat infection",
+    "Mild cough in child",
+  ],
+  "Fever & Infection": [
+    "Fever",
+    "Mild UTI",
+    "Mild conjunctivitis",
+    "Minor wound infection",
+    "Mild dehydration",
+  ],
+  "Skin & Hair": [
+    "Fungal skin infection",
+    "Ringworm",
+    "Minor burn",
+    "Minor cut",
+    "Mouth ulcer",
+    "Dandruff",
+    "Acne",
+    "Mild rash",
+    "Heat rash",
+    "Scabies",
+    "Skin allergy",
+    "Sunburn",
+  ],
+  "Pain & Joints": [
+    "Headache",
+    "Body pain",
+    "Toothache",
+    "Ear pain",
+    "Mild back pain",
+    "Muscle cramp",
+    "Mild joint pain",
+    "Mild migraine",
+    "Mild swelling",
+  ],
+  "Mind & Rest": [
+    "Mild insomnia",
+    "Mild anxiety",
+    "Motion sickness",
+    "Vitamin deficiency",
+    "Iron deficiency",
+  ],
+};
+
 function DiseasesScreen() {
   const [open, setOpen] = useState(-1);
   const [query, setQuery] = useState("");
-  const rows = useMemo(
-    () => diseases.filter((d) => (d.name + d.symptoms).toLowerCase().includes(query.toLowerCase())),
-    [query],
-  );
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const rows = useMemo(() => {
+    return diseases.filter((d) => {
+      const matchesSearch =
+        query.trim() === "" ||
+        (d.name + " " + d.description + " " + d.symptoms)
+          .toLowerCase()
+          .includes(query.toLowerCase());
+      if (!matchesSearch) return false;
+
+      if (selectedCategory === "All") return true;
+      const categoryList = CONDITION_CATEGORIES[selectedCategory] || [];
+      return categoryList.includes(d.name);
+    });
+  }, [query, selectedCategory]);
+
   return (
-    <main className="conditions-layout diseases-layout screen-stage">
-      <section className="glass-panel disease-panel conditions-panel">
-        <div className="screen-title disease-title">
-          <Leaf />
-          <div>
-            <h1>Diseases &amp; Symptoms</h1>
-            <p>Tap any condition to open its full guidance.</p>
+    <main className="conditions-layout diseases-layout screen-stage" id="conditions-main-stage">
+      <section className="glass-panel disease-panel conditions-panel" id="conditions-panel">
+        <div className="panel-fixed-header" id="conditions-fixed-header">
+          <div className="screen-title disease-title" id="conditions-screen-title">
+            <Leaf />
+            <div>
+              <h1>Diseases &amp; Symptoms</h1>
+              <p>Authentic clinical guidance and classical Ayurvedic care for common conditions.</p>
+            </div>
+          </div>
+          <div className="search-row single" id="conditions-search-row">
+            <label className="searchbox" id="conditions-searchbox">
+              <Search />
+              <input
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setOpen(-1);
+                }}
+                placeholder="Search condition, dosha, or symptom (e.g. fever, headache, cold)..."
+                id="conditions-search-input"
+              />
+            </label>
+          </div>
+          <div className="category-chips-row" id="conditions-categories">
+            {Object.keys(CONDITION_CATEGORIES).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`category-chip ${selectedCategory === cat ? "active" : ""}`}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setOpen(-1);
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <div className="conditions-count-label">
+            Showing {rows.length} {rows.length === 1 ? "condition" : "conditions"}
           </div>
         </div>
-        <div className="search-row single">
-          <label className="searchbox">
-            <Search />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search disease, symptom or keyword..."
-            />
-          </label>
-        </div>
-        <div className="condition-list">
-          {rows.map((d, i) => {
-            const threat = getConditionThreat(d.name);
-            return (
-              <article className={`condition ${open === i ? "expanded" : ""}`} key={d.name}>
-                <ActionButton
-                  className="condition-head"
-                  onClick={() => setOpen(open === i ? -1 : i)}
-                  aria-expanded={open === i}
-                >
-                  <span>{i + 1}</span>
-                  <b>
-                    <HeartPulse />
-                  </b>
-                  <div>
-                    <h2>{d.name}</h2>
-                    <p>{d.symptoms}</p>
-                  </div>
-                  <span
-                    className={`threat-badge-pill threat-badge-${threat.level.toLowerCase()}`}
-                    aria-label={`Threat level: ${threat.level}`}
-                    title={`Threat level: ${threat.level}`}
-                  />
-                  <ChevronDown />
-                </ActionButton>
-                {open === i && (
-                  <div className="detail-grid">
-                    <div className={`detail-block threat-box threat-${threat.level.toLowerCase()}`}>
-                      <div className="threat-box-head">
-                        {threat.level === "High" && <AlertTriangle className="threat-icon" />}
-                        {threat.level === "Medium" && <AlertCircle className="threat-icon" />}
-                        {threat.level === "Low" && <CheckCircle2 className="threat-icon" />}
-                        <h3>
-                          Threat Level: <span>{threat.level}</span>
-                        </h3>
-                      </div>
-                      <p className="threat-summary">{threat.summary}</p>
+        <div className="condition-list" id="conditions-list">
+          {rows.length === 0 ? (
+            <div className="empty-search-state">
+              <p>No health conditions found matching &ldquo;{query}&rdquo; in this category.</p>
+              <button
+                type="button"
+                className="btn-link"
+                onClick={() => {
+                  setQuery("");
+                  setSelectedCategory("All");
+                }}
+              >
+                Reset filters
+              </button>
+            </div>
+          ) : (
+            rows.map((d, i) => {
+              const threat = getConditionThreat(d.name);
+              return (
+                <article className={`condition ${open === i ? "expanded" : ""}`} key={d.name}>
+                  <ActionButton
+                    className="condition-head"
+                    onClick={() => setOpen(open === i ? -1 : i)}
+                    aria-expanded={open === i}
+                  >
+                    <span>{i + 1}</span>
+                    <b>
+                      <HeartPulse />
+                    </b>
+                    <div>
+                      <h2>{d.name}</h2>
+                      <p>{d.symptoms}</p>
                     </div>
-                    <DetailBlock label="Description" value={d.description} />
-                    <DetailBlock label="Key symptoms" value={d.symptoms} />
-                    <DetailBlock label="Common care / OTC support" value={d.care} />
-                    <DetailBlock label="When to see a doctor" value={d.doctor} />
-                    <DetailBlock label="What to avoid" value={d.avoid} />
-                  </div>
-                )}
-              </article>
-            );
-          })}
+                    <span
+                      className={`threat-badge-tag threat-badge-${threat.level.toLowerCase()}`}
+                      aria-label={`Threat level: ${threat.level}`}
+                    >
+                      {threat.level === "High" && <AlertTriangle className="threat-tag-icon" />}
+                      {threat.level === "Medium" && <AlertCircle className="threat-tag-icon" />}
+                      {threat.level === "Low" && <CheckCircle2 className="threat-tag-icon" />}
+                      <span>{threat.level} Severity</span>
+                    </span>
+                    <ChevronDown />
+                  </ActionButton>
+                  {open === i && (
+                    <div className="detail-grid">
+                      <div
+                        className={`detail-block threat-box threat-${threat.level.toLowerCase()}`}
+                      >
+                        <div className="threat-box-head">
+                          {threat.level === "High" && <AlertTriangle className="threat-icon" />}
+                          {threat.level === "Medium" && <AlertCircle className="threat-icon" />}
+                          {threat.level === "Low" && <CheckCircle2 className="threat-icon" />}
+                          <h3>
+                            Threat Level: <span>{threat.level}</span>
+                          </h3>
+                        </div>
+                        <p className="threat-summary">{threat.summary}</p>
+                      </div>
+                      <DetailBlock
+                        label="Clinical &amp; Ayurvedic Overview"
+                        value={d.description}
+                      />
+                      <DetailBlock label="Key Symptoms" value={d.symptoms} />
+                      <DetailBlock label="Ayurvedic Care &amp; Remedies" value={d.care} />
+                      <DetailBlock label="When to See a Doctor (Red Flags)" value={d.doctor} />
+                      <DetailBlock label="What to Avoid (Apathya)" value={d.avoid} />
+                    </div>
+                  )}
+                </article>
+              );
+            })
+          )}
         </div>
       </section>
     </main>
@@ -691,26 +853,29 @@ function MedicinesScreen() {
     [query],
   );
   return (
-    <main className="medicines-layout diseases-layout screen-stage">
-      <section className="glass-panel disease-panel medicines-panel">
-        <div className="screen-title disease-title">
-          <Pill />
-          <div>
-            <h1>Medicines</h1>
-            <p>Tap a medicine to see its uses, side effects and warnings.</p>
+    <main className="medicines-layout diseases-layout screen-stage" id="medicines-main-stage">
+      <section className="glass-panel disease-panel medicines-panel" id="medicines-panel">
+        <div className="panel-fixed-header" id="medicines-fixed-header">
+          <div className="screen-title disease-title" id="medicines-screen-title">
+            <Pill />
+            <div>
+              <h1>Medicines</h1>
+              <p>Tap a medicine to see its uses, side effects and warnings.</p>
+            </div>
+          </div>
+          <div className="search-row single" id="medicines-search-row">
+            <label className="searchbox" id="medicines-searchbox">
+              <Search />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search medicine name or use..."
+                id="medicines-search-input"
+              />
+            </label>
           </div>
         </div>
-        <div className="search-row single">
-          <label className="searchbox">
-            <Search />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search medicine name or use..."
-            />
-          </label>
-        </div>
-        <div className="condition-list">
+        <div className="condition-list" id="medicines-list">
           {rows.map((m, i) => (
             <article className={`condition ${open === i ? "expanded" : ""}`} key={m.name}>
               <ActionButton
@@ -752,7 +917,33 @@ function MedicinesScreen() {
 }
 
 function Index() {
-  const [view, setView] = useState<View>("home");
+  const [view, setViewState] = useState<View>("home");
+
+  const setView = (v: View) => {
+    setViewState(v);
+    if (typeof window !== "undefined") {
+      window.location.hash = v === "home" ? "" : v;
+    }
+  };
+
+  useEffect(() => {
+    const raw = window.location.hash.replace("#", "");
+    const h = (raw as View) || "home";
+    if (["home", "hospitals", "diseases", "medicines", "chat"].includes(h) && h !== "home") {
+      setViewState(h);
+    }
+
+    const onHashChange = () => {
+      const currentRaw = window.location.hash.replace("#", "");
+      const currentH = (currentRaw as View) || "home";
+      if (["home", "hospitals", "diseases", "medicines", "chat"].includes(currentH)) {
+        setViewState(currentH);
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
   return (
     <div
       className={`app-shell ${view === "home" ? "is-home" : ""}`}

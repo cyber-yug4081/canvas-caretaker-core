@@ -2013,404 +2013,604 @@ export const medicines: Medicine[] = [
 
 export const diseases: Condition[] = [
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Fever",
+    description:
+      "Elevation of body temperature accompanied by chills and malaise, known in Ayurveda as Jwara, primarily triggered by Pitta and Vata aggravation impacting digestive fire (Agni).",
+    symptoms:
+      "Body temperature above 98.6°F (37°C); Chills and shivering; Body aches; Dry mouth and thirst; Loss of appetite; Lethargy",
+    care: "Giloy Ghanvati (1-2 tablets twice daily); Mahasudarshan Vati; Tulsi and ginger warm decoction with honey; Hydrate with warm boiled water; Light mung dal khichdi",
+    doctor:
+      "Temperature exceeds 102°F (38.9°C); Persisting over 72 hours; Accompanied by stiff neck, confusion, chest pain, or petechial rash",
+    avoid:
+      "Cold refrigerated drinks and ice; Heavy oily and fried food; Strenuous physical exertion; Direct exposure to cold air conditioning",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Common cold",
+    description:
+      "Acute viral upper respiratory tract congestion with excessive mucus secretion, recognized in Ayurveda as Pratishyaya, primarily due to Kapha-Vata imbalance.",
+    symptoms:
+      "Runny or congested nose; Frequent sneezing; Mild sore throat; Watery eyes; Low-grade head heaviness; Mild dry cough",
+    care: "Sitopaladi Churna with raw honey; Inhalation of steam with eucalyptus oil or carom seeds (Ajwain); Warm turmeric milk (Golden Milk) before bed; Tulsi-black pepper tea",
+    doctor:
+      "High fever (>101°F) develops; Symptoms persist beyond 10-12 days; Severe sinus pain, ear pain, or difficulty breathing ensues",
+    avoid:
+      "Chilled water and dairy products (curd, cheese, ice cream); Cold drafty environments; Day-time sleeping; Heavy sweet meals",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Cough",
+    description:
+      "Reflex response clearing the respiratory passages of irritants or phlegm, referred to as Kasa in classical Ayurveda with distinct dry (Vata) and productive (Kapha) variations.",
+    symptoms:
+      "Persistent hacking or wet throat irritation; Phlegm production; Chest tightness during bouts; Raspy voice; Interrupted sleep",
+    care: "Mulethi (Licorice) root tea or lozenges; Sitopaladi Churna mixed with pure honey; Talisadi Churna; Warm salt water gargling twice daily; Ginger juice with honey",
+    doctor:
+      "Coughing up blood or rust-colored sputum; Shortness of breath or wheezing; Lasting longer than 3 weeks; Accompanied by unexplained weight loss",
+    avoid:
+      "Smoking and secondhand tobacco smoke; Cold or sour foods; Deep-fried snacks; Carbonated sodas and refrigerated desserts",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Headache",
+    description:
+      "Tension, vascular, or sinus-related cephalic pain, known as Shirashoola in Ayurveda, often linked to eye fatigue, dehydration, stress, or digestive toxins (Ama).",
+    symptoms:
+      "Dull throbbing or pressing ache across temples or forehead; Neck muscle stiffness; Light sensitivity; Scalp tenderness",
+    care: "Hydrate with room-temperature water; Gentle forehead massage with warm sesame or almond oil; Brahmi or Shankhpushpi tea; Rest in a quiet, dimmed room",
+    doctor:
+      "Sudden 'thunderclap' severe pain; Accompanied by visual aura, slurred speech, limb numbness, high fever, or vomiting",
+    avoid:
+      "Prolonged uninterrupted screen time; Skipping meals; Loud noisy environments; Excessive caffeine and artificial sweeteners",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Body pain",
+    description:
+      "Diffuse musculoskeletal soreness and fatigue, designated as Angamarda in Ayurveda, usually resulting from Vata imbalance, physical exhaustion, or viral recovery.",
+    symptoms:
+      "General muscular aches; Joint stiffness upon waking; Lethargy and low stamina; Heaviness in limbs",
+    care: "Warm sesame oil self-massage (Abhyanga); Warm Epsom salt bath; Ashwagandha powder (1 tsp with warm milk); Gentle stretching and adequate 8-hour sleep",
+    doctor:
+      "Severe localized swelling or redness; Inability to bear weight; Joint deformity; Accompanied by persistent high fever",
+    avoid:
+      "Intense heavy weightlifting; Prolonged sedentary posture; Skipping sleep; Cold dry winds and drafts",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild diarrhea",
+    description:
+      "Frequent loose, watery bowel movements resulting from digestive disruption or mild infection, termed Atisara in Ayurveda, involving vitiated Pitta and Vata.",
+    symptoms:
+      "Loose or liquid stools 3-4 times daily; Mild abdominal cramps; Rumbling sounds in gut; Mild dehydration; Weakness",
+    care: "Oral Rehydration Solution (ORS) or coconut water; Pomegranate juice; Bilwadi Churna or Kutajarishta; Cooked white rice with fresh buttermilk (Takra) and roasted cumin",
+    doctor:
+      "Blood or black tarry matter in stool; High fever; Signs of severe dehydration (sunken eyes, no urine in 8 hours); Persisting over 48 hours",
+    avoid:
+      "Raw uncooked vegetables and salads; Milk, cheese, and butter; Spicy curries; Caffeine and alcoholic beverages",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Acidity",
+    description:
+      "Excess gastric acid production causing burning sensation in the chest and epigastrium, known as Amlapitta, predominantly a severe Pitta aggravation.",
+    symptoms:
+      "Heartburn and burning sensation behind breastbone; Sour belching; Acid regurgitation into throat; Nausea; Bloated stomach",
+    care: "Avipattikar Churna (1 tsp with water before meals); Cold milk or fennel seed (Saunf) water; Munakka (soaked raisins); Fresh coconut water; Kamadudha Ras",
+    doctor:
+      "Difficulty or severe pain while swallowing; Unexplained vomiting with dark material; Chest pain radiating to left shoulder or jaw",
+    avoid:
+      "Deep-fried foods, red chilies, vinegar, and citrus juices; Irregular meal timing; Lying down immediately after eating; Excessive tea and coffee",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Indigestion",
+    description:
+      "Impaired digestion and poor gastrointestinal processing, classified as Ajirna, caused by weak digestive fire (Manda Agni) and accumulation of undigested toxins (Ama).",
+    symptoms:
+      "Fullness long after eating; Upper abdominal discomfort; Mild nausea; Belching; Dull sluggish feeling",
+    care: "Hingwashtak Churna with the first morsel of food; Warm ginger-lemon-rock salt infusion 10 minutes prior to meals; Jeera-Dhania-Saunf (CCF) tea; Short post-meal stroll",
+    doctor:
+      "Severe persistent abdominal pain; Involuntary rapid weight loss; Jaundice (yellowing of eyes/skin); Inability to keep liquids down",
+    avoid:
+      "Overeating or snacking before previous meal is digested; Heavy cheese and processed junk meals; Iced drinks with meals; Late-night dinners",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Vomiting",
+    description:
+      "Involuntary expulsion of gastric contents through the mouth, termed Chhardi in Ayurveda, caused by acute gastric irritation, motion, or food incompatibility.",
+    symptoms:
+      "Preceding nausea and profuse salivation; Retching and abdominal spasms; Dizziness; Bitter or sour taste in mouth",
+    care: "Small sips of electrolyte water or tender coconut water; Mayurashtaka Churna with honey; Clove (Laung) or cardamom (Elaichi) infused water; Sucking on fresh ginger slice",
+    doctor:
+      "Inability to retain any liquids for over 12 hours; Vomiting blood or coffee-ground material; Confusion, extreme lethargy, or fainting",
+    avoid:
+      "Eating solid food during active nausea; Large gulps of water; Strong cooking aromas and perfumes; Lying completely flat on back",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Constipation",
+    description:
+      "Infrequent, difficult, or dry bowel evacuation, designated as Vibandha, primarily driven by aggravated dry Vata in the colon (Pakwashaya).",
+    symptoms:
+      "Fewer than 3 bowel movements per week; Hard, dry, lumpy stools; Straining during evacuation; Sensation of incomplete emptying; Bloating",
+    care: "Triphala Churna (1 tsp in warm water at bedtime); Psyllium husk (Isabgol) with warm water; Soaked figs (Anjeer) and prunes; Castor oil (5-10 ml in warm milk for acute ease)",
+    doctor:
+      "Severe abdominal cramping with absolute inability to pass stool or flatus; Rectal bleeding; Sudden unexplained change in bowel habits over age 50",
+    avoid:
+      "Refined flour (maida), bakery goods, and white bread; Dry crackers and fast food; Sedentary lifestyle without walking; Dehydration",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Sore throat",
+    description:
+      "Inflammation and painful irritation of the pharynx, known as Kanthashoola, typically triggered by viral exposure, dry air, or acid reflux.",
+    symptoms:
+      "Scratchy, painful throat aggravated by swallowing; Mild hoarseness; Swollen, tender neck glands; Mild ear irritation",
+    care: "Warm saline gargle with a pinch of turmeric (3 times daily); Yashtimadhu (Licorice) lozenges; Warm ginger-clove herbal tea; Khadiradi Vati",
+    doctor:
+      "Severe difficulty swallowing saliva or breathing; High fever above 101.5°F; White pus spots visible on tonsils; Lasting over a week",
+    avoid:
+      "Cold ice water and frozen foods; Smoking and vaping; Yelling or voice strain; Extremely sour or spicy condiments",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild allergy",
+    description:
+      "Hypersensitive immune and mucous membrane reaction to environmental pollens, dust mites, or animal dander, linked to Asatmya (unwholesome exposure) in Ayurveda.",
+    symptoms:
+      "Frequent sneezing paroxysms; Itchy watery eyes; Clear watery nasal discharge; Itchy palate or ears; Mild cutaneous itching",
+    care: "Haridra Khand (Turmeric formulation, 1 tsp twice daily); Nasal instillation of Anu Taila (Nasya); Steam inhalation; Stinging nettle or Tulsi tea",
+    doctor:
+      "Facial, lip, or tongue swelling; Wheezing or shortness of breath; Dizziness or drop in blood pressure (anaphylaxis warning)",
+    avoid:
+      "Known allergen triggers (dusty carpets, pet dander, blooming pollens); Chemically scented air fresheners; Damp, moldy rooms",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Fungal skin infection",
+    description:
+      "Superficial cutaneous fungal growth thriving in warm, damp skin folds, classified under Dadru Kushta, driven by Kapha-Pitta vitiation and sweat buildup.",
+    symptoms:
+      "Red, itching, well-demarcated patches in groin, underarms, or toes; Peeling, cracked skin; Mild burning sensation",
+    care: "Keep area completely dry and clean; Apply Neem oil or Mahamarichyadi Taila; Dust with pure starch/anti-fungal powder; Gandhak Rasayan orally under supervision",
+    doctor:
+      "Spreading rapidly despite topical hygiene; Developing secondary bacterial pus, crusting, or cellulitis; Present in immunocompromised or diabetic individuals",
+    avoid:
+      "Tight synthetic undergarments and non-breathable shoes; Sharing personal towels and clothes; Scratching with fingernails; Humid damp conditions",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Ringworm",
+    description:
+      "Tinea corporis infection manifesting as circular, raised, red itchy lesions with clear centers, classically cataloged as Dadru.",
+    symptoms:
+      "Circular erythematous lesions with raised scaly borders; Intense itching, especially when sweating; Expanding ring shape",
+    care: "Neem leaf paste application; Mahatiktaka Ghrita or Karanja oil topical application; Wear loose, 100% cotton garments; Wash clothing in hot water with antiseptic",
+    doctor:
+      "Lesions covering extensive body surface areas; Severe bacterial secondary infection; Ineffective after 2-3 weeks of targeted care",
+    avoid:
+      "Moisture retention; Synthetic nylon clothing; Contact sports until healed; Touching the lesions and subsequently rubbing other skin zones",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Minor burn",
+    description:
+      "Superficial first-degree thermal or hot liquid damage to the epidermis, termed Agnidagdha in Ayurveda.",
+    symptoms:
+      "Local redness, mild swelling, and stinging pain; Absence of large ruptured blisters; Intact skin surface",
+    care: "Immediately run cool (not icy) tap water over the burn for 15 minutes; Apply pure Aloe Vera gel or Shatadhauta Ghrita (100 times washed ghee); Keep loosely covered with sterile gauze",
+    doctor:
+      "Blistering covers palm-sized area or larger; Burn is on face, hands, groin, or joints; Chemical or electrical burn origin; Signs of pus infection",
+    avoid:
+      "Applying ice cubes, butter, toothpaste, or oil directly onto fresh burns; Popping any small blisters that form; Peeling damaged skin",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Minor cut",
+    description:
+      "Small clean laceration or abrasion through superficial skin layers, termed Sadyovrana, requiring prompt cleansing and hemostasis.",
+    symptoms:
+      "Localized minor bleeding that halts with pressure; Mild stinging discomfort; Clean skin edges",
+    care: "Wash thoroughly with clean water and mild soap; Apply gentle pressure with clean cloth until bleeding stops; Apply Turmeric (Haridra) powder paste or Jatyadi Taila; Apply sterile band-aid",
+    doctor:
+      "Bleeding does not stop after 10 minutes of direct pressure; Cut is deep, gaping, or exposes fat/muscle (needs stitches); Caused by rusty or dirty object (tetanus check)",
+    avoid:
+      "Picking at the forming scab; Exposing open wound to unwashed hands or muddy water; Harsh alcohol burns on deep tissue",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Minor wound infection",
+    description:
+      "Early localized bacterial colonization of an existing cut or scratch, characterized as Dushta Vrana in traditional texts.",
+    symptoms:
+      "Increasing redness surrounding wound margin; Mild warmth and localized swelling; Throbbing pain; Small amount of clear/cloudy exudate",
+    care: "Cleanse with warm Neem leaf decoction (Triphala Kwath); Apply Jatyadi Ghrita or mupirocin ointment; Keep covered with clean sterile dressing changed twice daily",
+    doctor:
+      "Red streaks radiating up the limb (lymphangitis); Foul-smelling thick yellow/green pus; Fever or spreading swelling and severe warmth",
+    avoid:
+      "Leaving wound moist under unventilated plastic wraps; Submerging in public swimming pools or bathtubs; Squeezing or picking the wound edges",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mouth ulcer",
+    description:
+      "Painful, small superficial sores inside the cheeks, lips, or tongue, known as Mukhpaka in Ayurveda, stemming from internal Pitta heat and gastric disturbance.",
+    symptoms:
+      "Small round yellowish/white ulcer with red inflammatory halo; Sharp stinging pain on eating salty, spicy, or sour foods; Increased salivation",
+    care: "Apply pure honey or Khadiradi Vati locally; Rinse mouth with Triphala decoction or coconut oil (oil pulling / Gandusha); Yashtimadhu paste; Correct bowel clearance",
+    doctor:
+      "Ulcer persists longer than 2 weeks without healing; Unusually large ulcer (>1 cm); Difficulty swallowing food and liquids; Accompanied by high fever",
+    avoid:
+      "Chili powder, black pepper, and acidic citrus fruits; Hot-temperature foods and boiling beverages; Toothpastes with Sodium Lauryl Sulfate (SLS); Stress and lack of sleep",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Toothache",
+    description:
+      "Pain originating in or around a tooth, termed Dantashoola, provoked by enamel decay, gum inflammation, or exposed dental nerve roots.",
+    symptoms:
+      "Sharp throbbing or constant ache in tooth or jaw; Sensitivity to hot, cold, or sugary foods; Swollen tender gums around the tooth",
+    care: "Apply a small drop of pure Clove oil (Lavanga Taila) on a cotton swab directly to the tooth; Warm salt water mouth rinse every 2 hours; Irimedadi Taila gargle",
+    doctor:
+      "Facial swelling extending to cheek or below eye; Fever; Inability to open mouth (trismus); Severe unbearable pain not relieved by analgesics",
+    avoid:
+      "Hard crunchy nuts and candies; Extremely cold ice water or boiling soups; Chewing on the affected side; Placing aspirin directly against gum tissue",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Ear pain",
+    description:
+      "Acute otalgia and discomfort in the external or middle ear canal, classified as Karnashoola, often connected to upper respiratory congestion or water retention.",
+    symptoms:
+      "Dull or sharp ache in the ear; Feeling of fullness or muffled hearing; Mild tenderness when pulling earlobe; Irritability",
+    care: "Warm dry compress applied to the outer ear; Keep ear dry; Bilva Taila ear drops (only if eardrum is confirmed intact); Oral paracetamol for pain relief",
+    doctor:
+      "Fluid, pus, or bloody discharge leaking from the ear canal; High fever, dizziness, or hearing loss; Swelling and redness behind the ear mastoid bone",
+    avoid:
+      "Inserting cotton buds, hairpins, or fingers into the ear canal; Water entering ear during bathing; Forceful nose blowing",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild sinusitis",
+    description:
+      "Congestion and inflammation of paranasal sinus cavities, described as Peenasa, caused by Kapha-Vata obstruction of respiratory channels (Pranavaha Srotas).",
+    symptoms:
+      "Facial pressure and tenderness across cheeks, forehead, or between eyes; Thick nasal discharge; Reduced sense of smell; Morning headache",
+    care: "Steam inhalation with peppermint, eucalyptus, or ajwain 3 times daily; Shadbindu Taila or Anu Taila (2 drops in each nostril in morning); Warm ginger-cinnamon tea",
+    doctor:
+      "Severe periorbital swelling and redness around eye; High fever; Stiff neck; Symptoms worsening sharply after initial partial recovery",
+    avoid:
+      "Cold refrigerated foods and dairy (curd, paneer, ice cream); Swimming in chlorinated pools; Exposure to dust, smoke, and abrupt temperature drops",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild asthma",
+    description:
+      "Chronic bronchial airway sensitivity with intermittent mild bronchospasm and wheezing, designated as Tamak Shwasa, governed by vitiated Vata and Kapha.",
+    symptoms:
+      "Mild wheezing during exhalation; Periodic chest tightness; Dry cough, especially at night or early morning; Mild shortness of breath with exertion",
+    care: "Keep prescribed rescue inhaler accessible; Shringyadi Churna or Sitopaladi with honey; Warm ginger water with crushed black pepper; Practice Pranayama (Anulom Vilom)",
+    doctor:
+      "Inability to speak full sentences without gasping; Lips or fingernails turning bluish; Rescue inhaler provides zero relief; Severe chest retractions",
+    avoid:
+      "Exposure to cold air without a scarf; Animal dander, smoke, and industrial fumes; Ice-cold beverages; Heavy Kapha-inducing curd and bananas at night",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild dehydration",
+    description:
+      "Deficit in total body water and essential electrolytes, known as Trishna or Udakavaha Srotas depletion, caused by heat, inadequate fluid intake, or sweating.",
+    symptoms:
+      "Thirst and dry sticky mouth; Dark amber-colored urine; Mild headache and lightheadedness; Decreased urine frequency; Fatigue",
+    care: "Sip WHO-formula Oral Rehydration Solution (ORS); Fresh tender coconut water; Shadaanga Paniya (Ayurvedic herbal water); Watermelon juice; Rest in shaded cool area",
+    doctor:
+      "Inability to produce urine for 8+ hours; Extreme confusion, dizziness, or fainting; Rapid weak pulse; Sunken dry eyes with no tears",
+    avoid:
+      "Caffeinated coffee, black tea, energy drinks, and alcohol; Sitting under direct midday blazing sun; Intensive physical workouts in high humidity",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Gas problem",
+    description:
+      "Intestinal flatulence, tympanites, and abdominal bloating, classically known as Adhmana, resulting from Samana Vata disturbance and unassimilated food.",
+    symptoms:
+      "Abdominal distention and tightness; Frequent audible belching or flatulence; Spasmodic intestinal rumbling; Relief following gas release",
+    care: "Hingwashtak Churna (1/2 tsp with warm water or ghee); Chew 1/2 tsp roasted fennel and carom seeds (Saunf-Ajwain) after meals; Apply warm hing paste around navel",
+    doctor:
+      "Severe continuous agonizing abdominal pain; Inability to pass gas or stool with progressive vomiting; Unintentional weight loss; Blood in stool",
+    avoid:
+      "Carbonated soda and fizzy drinks; Raw cruciferous vegetables (cauliflower, cabbage, broccoli) in excess; Chewing gum; Eating in a hurry without chewing",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild UTI",
+    description:
+      "Early-stage irritation and mild bacterial colonization of the lower urinary tract and bladder, designated as Mutrakrichhra, predominantly aggravated Pitta.",
+    symptoms:
+      "Burning or stinging sensation during urination (dysuria); Increased urgency and frequency of urination; Cloudy or concentrated urine; Pelvic pressure",
+    care: "Chandanadi Vati or Gokshuradi Guggulu; Drink 3-4 liters of water daily; Unsweetened cranberry juice; Barley water (Yava Udaka); Coriander seed infusion",
+    doctor:
+      "High fever with chills and back/flank pain (indicates kidney involvement / pyelonephritis); Visible blood in urine (hematuria); Symptoms worsening after 48 hrs",
+    avoid:
+      "Holding urine for prolonged periods; Heavily spiced, pungent, and salty foods; High alcohol, vinegar, and coffee intake; Synthetic restrictive underwear",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Vitamin deficiency",
+    description:
+      "Suboptimal systemic micronutrient levels (such as Vitamin D, B12, or C), associated with Dhatu Kshaya (tissue depletion) and impaired Agni.",
+    symptoms:
+      "Chronic unexplained fatigue and muscle weakness; Tingling 'pins and needles' sensation in hands or feet; Brittle nails; Frequent mouth sores; Mood changes",
+    care: "Amla (Indian gooseberry) for natural Vitamin C; 20 minutes of early morning sunlight for Vitamin D3; Ashwagandha and Chyawanprash; Nutrient-dense diet with nuts and seeds",
+    doctor:
+      "Severe neurological deficits (unsteady gait, confusion, memory loss); Extreme debilitating fatigue; Signs of severe anemia or bone pain",
+    avoid:
+      "Relying exclusively on processed, refined, fast foods; Excessive carbonated sodas which leach bone minerals; Chronic alcohol consumption",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Iron deficiency",
+    description:
+      "Depleted systemic iron stores leading to impaired hemoglobin synthesis, recognized as Pandu Roga in Ayurvedic pathophysiology.",
+    symptoms:
+      "Pale skin, inner eyelids, and nail beds; Generalized weakness and shortness of breath upon stair climbing; Cold hands and feet; Dizziness; Heart palpitations",
+    care: "Loha Bhasma or Dhatri Lauha (under physician prescription); Soaked black raisins (Munakka), dates, and figs; Pomegranate juice; Cook in traditional cast iron cookware",
+    doctor:
+      "Chest pain or rapid irregular heartbeat; Shortness of breath at rest; Severe fainting episodes; Hemoglobin dropping below critical levels (<8 g/dL)",
+    avoid:
+      "Drinking black tea or coffee immediately with meals (tannins inhibit iron absorption); Calcium supplements taken at the exact same time as iron-rich meals",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Dandruff",
+    description:
+      "Excessive shedding of dead epidermal scalp flakes linked to Malassezia yeast and sebaceous activity, cataloged as Darunaka in Ayurveda.",
+    symptoms:
+      "White or yellowish oily flakes on scalp, hair, and shoulders; Scalp pruritus and irritation; Dry, tight, or inflamed scalp surface",
+    care: "Massage scalp with warm coconut oil infused with Neem, Amla, or Bhringraj; Rinse hair with Triphala or boiled Fenugreek (Methi) water; Apply fresh Aloe Vera gel",
+    doctor:
+      "Scalp becomes heavily inflamed, crusty, bleeding, or produces thick weeping lesions (suspected severe seborrheic dermatitis or psoriasis)",
+    avoid:
+      "Washing hair with scorching hot water; Frequent chemical hair treatments and strong sulfates; Scratching scalp with sharp fingernails; Chronic emotional stress",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Acne",
+    description:
+      "Inflammatory follicular pustules and comedones on the face and chest, classically termed Yuvanpidika, triggered by Pitta-Kapha vitiation in Rakta Dhatu.",
+    symptoms:
+      "Blackheads, whiteheads, red tender pimples, and occasional small pustules on face, neck, or shoulders; Oily skin surface",
+    care: "Wash face twice daily with mild neem-based cleanser; Apply topical paste of Neem and Turmeric powder; Khadirarishta or Mahamanjisthadi Kwath orally; Pure Aloe Vera gel",
+    doctor:
+      "Deep, painful, cystic nodules causing permanent scarring; Severe widespread outbreak unresponsive to gentle hygiene; Signs of secondary systemic infection",
+    avoid:
+      "Picking, squeezing, or popping pimples (spreads infection and scars); Heavy comedogenic cosmetic creams; Excess fried greasy snacks, chocolates, and dairy",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild rash",
+    description:
+      "Localized pruritic erythematous skin eruption, classified under Kandu and Kotha, resulting from contact dermatitis, heat, or mild allergens.",
+    symptoms:
+      "Pink or red surface patches on skin; Itching and mild irritation; Tiny bumpy skin texture; Warm feeling on the affected area",
+    care: "Apply soothing Aloe Vera gel or calamine lotion; Cold water compresses; Coconut oil mixed with a drop of camphor (Karpura); Wear loose, breezy cotton clothes",
+    doctor:
+      "Rash spreads rapidly across entire body; Accompanied by facial swelling, breathing difficulty, or fever; Developing weeping blisters or purpuric spots",
+    avoid:
+      "Scratching with fingernails; Hot water showers and baths; Harsh laundry detergents and synthetic clothes; Exposure to direct midday sun",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Heat rash",
+    description:
+      "Miliaria rubra or prickly heat caused by blocked sweat ducts during hot, humid weather, known colloquially as Ghamori.",
+    symptoms:
+      "Clusters of tiny red prickling bumps; Intense prickling or stinging sensation when sweating; Occurring on neck, chest, back, and skin folds",
+    care: "Cool water sponge baths; Dust pure arrowroot or sandalwood (Chandan) powder; Apply rose water (Gulab Jal) and Aloe Vera; Stay in well-ventilated fan/air-cooled rooms",
+    doctor:
+      "Bumps become infected pustules draining yellow pus; Swollen regional lymph nodes; Fever or chills indicating bacterial superinfection",
+    avoid:
+      "Heavy oil-based creams or petroleum jelly that clog sweat pores; Tight synthetic non-absorbent clothes; Intense workouts in scorching heat",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Scabies",
+    description:
+      "Contagious parasitic cutaneous infestation by Sarcoptes scabiei mites, historically documented as Pama, requiring targeted acaricidal measures.",
+    symptoms:
+      "Intense nocturnal itching; Thin, thread-like wavy burrows between fingers, on wrists, waistline, and groin; Small pimple-like rash",
+    care: "Topical permethrin cream applied from neck to toes overnight; Wash all bedsheets, towels, and clothing in boiling water; Neem oil body massage; Treat all household contacts",
+    doctor:
+      "Widespread crusted skin lesions; Secondary bacterial skin infection (impetigo) with thick honey-colored crusts; Failure of initial topical therapy",
+    avoid:
+      "Close skin-to-skin contact with non-treated individuals; Sharing blankets, pillows, and clothing; Delaying treatment of family members",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Worm infection",
+    description:
+      "Intestinal helminthic parasite infestation (pinworms, roundworms), categorized comprehensively as Krimi Roga in Ayurvedic classics.",
+    symptoms:
+      "Anal or perianal itching, especially at night; Teeth grinding during sleep; Variable appetite and abdominal discomfort; Mild anemia; Pale facial patches",
+    care: "Vidangarishta or Krimikuthar Ras; Chew raw papaya seeds or pumpkin seeds in the morning; Single-dose albendazole under pharmacist guidance; Strict nail trimming",
+    doctor:
+      "Visible large worms passed in stool or vomit; Severe abdominal cramping; Marked weight loss; Severe rectal bleeding",
+    avoid:
+      "Eating with unwashed hands; Raw, undercooked meat or unwashed street salads; Walking barefoot on soil; Sugary sweets which aggravate intestinal worms",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild conjunctivitis",
+    description:
+      "Superficial inflammation of the ocular conjunctival membrane ('pink eye'), known as Netra Abhishyanda in Shalakya Tantra.",
+    symptoms:
+      "Pink or reddish discoloration of eye whites; Watery or mild mucus discharge; Gritty feeling like sand in eyes; Mild crusting on eyelashes upon waking",
+    care: "Wash eyes with sterile saline or boiled-cooled Triphala water eye wash; Apply cool compresses over closed eyelids; Practice strict hand hygiene; Lubricating tear drops",
+    doctor:
+      "Severe eye pain; Marked reduction in vision or extreme photophobia; Copious thick yellow-green pus; Involves contact lens wearers",
+    avoid:
+      "Rubbing eyes with bare hands; Wearing contact lenses until completely resolved; Sharing eye makeup, face towels, or pillowcases",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Motion sickness",
+    description:
+      "Sensory conflict between vestibular ocular input and physical motion during travel by vehicle, boat, or flight, termed Chhardi Vega.",
+    symptoms:
+      "Nausea, cold sweats, dizziness, and pallor; Excessive salivation; Headache; Vomiting during vehicular movement",
+    care: "Suck on fresh ginger or crystallized ginger candy; Keep gaze fixed on the stable distant horizon; Sip cold lemon-mint water; Sit near vehicle front seat or aircraft wing",
+    doctor:
+      "Persistent vomiting and inability to hydrate after travel ends; Prolonged severe vertigo and loss of balance lasting days after trip",
+    avoid:
+      "Reading books or staring at mobile screens while in motion; Eating heavy, greasy meals immediately before traveling; Sitting backwards",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild back pain",
+    description:
+      "Muscular strain or lumbar spinal postural discomfort, designated as Katishoola or Kativata, primarily caused by Vata vitiation from prolonged sitting or poor posture.",
+    symptoms:
+      "Dull, aching pain across lower back; Muscle tightness and stiffness upon rising from chairs; Reduced range of spinal flexion",
+    care: "Apply warm sesame oil or Mahanarayan Taila; Gentle heating pad for 15-20 minutes; Bhujangasana (Cobra pose) and gentle cat-cow stretches; Ergonomic lumbar chair cushion",
+    doctor:
+      "Pain radiating down the leg below knee with numbness or foot drop (sciatica); Sudden loss of bowel or bladder control (cauda equina emergency); Accompanied by unexplained fever",
+    avoid:
+      "Prolonged uninterrupted slouching; Lifting heavy boxes with curved back; Soft sagging mattresses; High-heeled shoes",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Muscle cramp",
+    description:
+      "Sudden, involuntary, and painful contraction of a muscle group (commonly calves or feet), termed Mamsagata Vata, triggered by dehydration or electrolyte shift.",
+    symptoms:
+      "Hard knot-like lump visible in muscle; Sudden sharp excruciating spasm lasting seconds to minutes; Residual soreness",
+    care: "Immediately gently stretch the affected muscle (pull toes upward toward knee for calf cramp); Massage with warm mustard or sesame oil; Drink electrolyte water; Potassium-rich bananas",
+    doctor:
+      "Frequent unexplained recurring cramps not related to exercise; Muscle wasting or weakness; Swelling and warmth in the calf (rule out Deep Vein Thrombosis)",
+    avoid:
+      "Exercising intensely in extreme heat without electrolyte hydration; Dehydration; Prolonged static awkward foot positioning",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild food poisoning",
+    description:
+      "Acute gastroenteritis caused by ingestion of spoiled or contaminated food, termed Ama Visha in Ayurveda.",
+    symptoms:
+      "Abdominal cramps and stomach spasms; Nausea, vomiting, and loose watery stools within 2-8 hours of eating; Low-grade fever; Weakness",
+    care: "Oral Rehydration Salt (ORS) in generous quantities; Sanjivani Vati or Bilwadi Churna; Ginger-mint tea; Light sips of pomegranate juice and rice water (Manda)",
+    doctor:
+      "Stools contain visible blood; High fever (>101.5°F); Severe dehydration (unable to retain fluids for 12 hours); Neurological signs like blurred vision",
+    avoid:
+      "Solid heavy foods until vomiting subsides; Anti-diarrheal drugs that freeze the bowel without doctor consent; Dairy products; Street food",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild gastritis",
+    description:
+      "Erythematous irritation of the stomach mucosal lining, categorized as Annadravashoola, closely linked to aggravated Pitta, irregular eating, and stress.",
+    symptoms:
+      "Gnawing or burning ache in upper stomach; Early satiety; Belching; Mild nausea and morning sickness feeling",
+    care: "Avipattikar Churna with coconut water; Soaked Munakka (raisins); Fresh cabbage juice or aloe vera juice; Licorice (Yashtimadhu) tea; Eat smaller, frequent meals",
+    doctor:
+      "Vomiting blood or black coffee-ground material; Black tarry stools; Unexplained anemia and weight loss; Persistent severe pain",
+    avoid:
+      "NSAID painkillers (like ibuprofen, aspirin) without food; Spicy chilies, citrus, and tomatoes; Alcohol and smoking; Skipping breakfast",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild joint pain",
+    description:
+      "Non-deforming articular stiffness and mild discomfort in knees, fingers, or shoulders, known as Sandhivata (early osteoarthritis), driven by dry, cold Vata.",
+    symptoms:
+      "Joint crepitus (cracking sounds); Morning stiffness lasting under 30 minutes; Mild ache after extended walking or weather changes",
+    care: "Gentle warm Mahanarayan Taila or Shallaki oil massage; Yogaraj Guggulu (1-2 tabs with warm water); Warm compress; Regular low-impact walking and joint rotations",
+    doctor:
+      "Joint becomes hot, intensely red, and visibly swollen (suspected septic arthritis or acute gout); Joint deformity; Inability to bear weight",
+    avoid:
+      "High-impact jumping on hard concrete; Exposure to cold wet weather without warm clothing; Foods that aggravate Vata (excess dry beans, stale refrigerated foods)",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild migraine",
+    description:
+      "Unilateral throbbing neurovascular headache with sensory hypersensitivity, designated as Ardhavabhedaka in Ayurvedic classical literature.",
+    symptoms:
+      "Throbbing pain localized to one side of the head; Photophobia (light sensitivity) and phonophobia (sound sensitivity); Mild nausea; Visual aura spots",
+    care: "Rest in a dark, silent, air-cooled room; Apply cooling sandalwood or peppermint paste to forehead; Nasya with pure cow's Ghee (2 drops in nostrils); Hydrate with electrolyte water",
+    doctor:
+      "Headache described as 'the worst headache of my life'; Accompanied by limb weakness, speech difficulty, confusion, or stiff neck; Sudden new onset after age 50",
+    avoid:
+      "Known food triggers (aged cheese, chocolates, MSG, wine, artificial sweeteners); Irregular sleep cycles; Flickering strobe lights; Skipping meals",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Skin allergy",
+    description:
+      "Acute urticarial wheals and hives emerging from histamine release, termed Sheetapitta / Udarda in Ayurveda.",
+    symptoms:
+      "Raised, itchy, red or flesh-colored wheals (welts) that blanch when pressed; Intense itching; Lesions shifting locations across hours",
+    care: "Apply cooling Aloe Vera gel or calamine lotion; Haridra Khand (1 tsp with warm water); Coconut oil mixed with pure camphor; Cold water compress",
+    doctor:
+      "Swelling of the lips, tongue, throat, or face (Angioedema); Difficulty breathing or swallowing; Feeling faint or lightheaded (Call emergency services)",
+    avoid:
+      "Hot water showers; Scratching wheals with fingernails; Known allergen foods (shellfish, nuts, preservatives); Tight constrictive clothes",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild swelling",
+    description:
+      "Transient mild dependent fluid accumulation in the feet or ankles after long standing, termed Shopha / Shotha, associated with sluggish Kapha-Vata circulation.",
+    symptoms:
+      "Mild puffiness around ankles or dorsum of foot; Socks leave deep elastic indentations; Heaviness in lower legs at the end of the day",
+    care: "Elevate legs on pillows above heart level for 20 minutes; Punarnavadi Kwath or Gokshura tea; Reduce dietary sodium; Gentle calf muscle contractions and short walks",
+    doctor:
+      "Swelling is only in one leg accompanied by calf pain and heat (DVT emergency); Facial swelling, shortness of breath, or abdominal distension (ascites)",
+    avoid:
+      "Standing or sitting motionless for long hours without moving ankles; High-sodium processed snacks; Tight elastic socks that cut off circulation",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Sunburn",
+    description:
+      "Ultraviolet radiation thermal erythema and damage to the epidermis, documented as Surya Dagdha, an acute severe Pitta aggravation.",
+    symptoms:
+      "Pink or red tender skin that feels hot to the touch; Mild stinging pain; Peeling skin several days later; Mild tightness",
+    care: "Apply chilled pure Aloe Vera gel liberally; Shatadhauta Ghrita or cold milk compress; Hydrate with generous amounts of water and coconut water; Cool baths",
+    doctor:
+      "Extensive blistering over large surface areas; High fever, chills, dizziness, or confusion (sunstroke); Signs of secondary skin infection",
+    avoid:
+      "Applying heavy petroleum jelly or butter; Peeling or popping sun blisters; Further sun exposure until fully healed; Harsh chemical exfoliants",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild insomnia",
+    description:
+      "Difficulty initiating or maintaining restful restorative sleep, cataloged as Anidra, primarily caused by hyperactive Prana Vata and elevated Tarpaka Kapha depletion.",
+    symptoms:
+      "Lying awake in bed for over 30 minutes; Racing thoughts at bedtime; Waking frequently during the night; Morning fatigue and brain fog",
+    care: "Foot massage with warm sesame or Brahmi oil before sleep (Padabhyanga); Warm milk with a pinch of nutmeg (Jaiphal) and cardamom; Ashwagandha; Dim lights 1 hour prior",
+    doctor:
+      "Chronic insomnia persisting beyond a month severely impacting daytime cognitive function; Paired with loud snoring and choking gasps (Sleep Apnea)",
+    avoid:
+      "Blue light exposure from phones, laptops, and TVs in bed; Caffeine or chocolate after 4 PM; Heavy late-night dinners; Daytime napping",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild anxiety",
+    description:
+      "Feelings of nervous tension, apprehension, and mental restlessness, known as Chittodvega, arising from vitiated Prana Vata perturbing the Manovaha Srotas.",
+    symptoms:
+      "Restless racing thoughts; Mild muscle tension and tremors; Shallow breathing; Mildly elevated heart rate; Difficulty relaxing",
+    care: "Brahmi Vati, Shankhpushpi syrup, or Ashwagandha; Deep diaphragmatic breathing (Pranayama: 4-7-8 breathing or Nadi Shodhana); Warm bath; Limit caffeine",
+    doctor:
+      "Full-blown panic attacks with severe chest pain, shortness of breath, and feeling of impending doom; Thoughts of self-harm; Severe functional impairment",
+    avoid:
+      "Excess coffee, energy drinks, and recreational stimulants; Doomscrolling negative news; Isolation; Skipping meals causing hypoglycemic jitters",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild cough in child",
+    description:
+      "Pediatric upper respiratory cough, termed Bala Kasa, demanding gentle, soothing formulations suited for tender pediatric physiology.",
+    symptoms:
+      "Intermittent dry or phlegmy cough; Mild nasal sniffing; Restless sleep; Throat clearing",
+    care: "1/2 tsp pure honey with a pinch of turmeric and ginger juice (for children over 1 year of age); Warm saline mist humidifier; Sitopaladi Churna in small pediatric doses",
+    doctor:
+      "Child under 3 months with fever; Barking seal-like cough or high-pitched stridor (Croup); Rapid breathing, flaring nostrils, or rib retractions; Lethargy",
+    avoid:
+      "Giving honey to infants under 12 months old (Infant Botulism risk); Over-the-counter multi-symptom cold syrups without pediatrician guidance; Cold drafts",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild nasal blockage",
+    description:
+      "Transient congestion of nasal turbinates and mucous membranes, known as Nasa Pratishyaya, caused by cold air, dust, or minor viral exposure.",
+    symptoms:
+      "Stuffy nose; Obligatory mouth breathing; Muffled voice; Mild dryness of throat upon waking; Reduced airflow through nostrils",
+    care: "Saline nasal spray or Jal Neti with warm sterile saline; Steam inhalation with carom seeds (Ajwain) or eucalyptus; Anu Taila drops; Elevate head with an extra pillow",
+    doctor:
+      "Unilateral nasal blockage with foul discharge or bleeding; Severe facial pain and pressure; High fever; Lasting over 14 days without relief",
+    avoid:
+      "Habitual prolonged use of decongestant nasal sprays (xylometazoline) beyond 3-5 days (prevents Rhinitis Medicamentosa); Cold drinks; Heavy dairy at night",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild throat infection",
+    description:
+      "Superficial viral or mild bacterial pharyngeal irritation, known as Kantharoga, provoking pain and discomfort during deglutition.",
+    symptoms:
+      "Painful or scratchy throat; Redness of pharyngeal mucosa; Mild fever; Swollen submandibular lymph nodes; Mild cough",
+    care: "Warm water gargles with rock salt (Saindhava) and turmeric; Khadiradi Vati or Yashtimadhu lozenges; Herbal decoction of Tulsi, Ginger, and Black pepper; Warm fluids",
+    doctor:
+      "Difficulty opening mouth or swallowing saliva; High fever with shaking chills; White exudate on tonsils; Breathing difficulty",
+    avoid:
+      "Cold refrigerated beverages; Spicy, fried, or sour pickles; Smoking and smoky environments; Straining voice",
   },
   {
-    description: "A common condition manageable with basic medical attention.",
-    symptoms: "Mild discomfort; Fatigue; Localized symptoms",
-    care: "Paracetamol; ORS; Antacids",
-    doctor: "If symptoms persist for more than 48 hours.",
-    avoid: "Heavy physical exertion; Unverified home remedies",
     name: "Mild stomach infection",
+    description:
+      "Mild gastroenteritis causing intestinal irritation and disrupted digestion, categorized under Grahani Dosha in classical Ayurvedic literature.",
+    symptoms:
+      "Mild cramping and abdominal rumbling; Loose stools; Nausea; Mild loss of appetite; Post-prandial heaviness",
+    care: "Sip warm water boiled with cumin and coriander seeds; Fresh thin buttermilk (Takra) churned with roasted cumin and ginger; Kutajghan Vati; Steamed white rice with mung dal",
+    doctor:
+      "Severe persistent diarrhea lasting more than 48 hours; Inability to keep fluids down; High fever; Blood in stool; Severe dehydration",
+    avoid:
+      "Raw salads, street food, and unpasteurized milk; Heavy fried foods, curd, and cheese; Oily spicy curries; NSAID painkillers",
   },
 ];
 

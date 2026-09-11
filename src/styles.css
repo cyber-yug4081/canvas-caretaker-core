@@ -177,6 +177,14 @@
     color: var(--foreground);
     padding-bottom: env(safe-area-inset-bottom);
   }
+  .app-shell:not(.is-home) {
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
   .background {
     position: fixed;
     inset: -12px;
@@ -239,6 +247,60 @@
     padding: 18px clamp(24px, 5vw, 78px);
     position: relative;
     z-index: 10;
+  }
+  .inner-brandbar {
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+    padding: 0 clamp(16px, 4vw, 48px) !important;
+    background: rgba(2, 22, 16, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-bottom: 1px solid rgba(134, 239, 172, 0.22) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-shrink: 0 !important;
+    z-index: 50 !important;
+    box-sizing: border-box !important;
+  }
+  .inner-brandbar .brandbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .inner-brandbar .back-button {
+    width: 36px;
+    height: 36px;
+  }
+  .inner-brandbar .brand-logo-img {
+    width: 34px;
+    height: 34px;
+  }
+  .inner-brandbar nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .inner-brandbar nav button {
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.85);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .inner-brandbar nav button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .inner-brandbar nav button.nav-active {
+    color: #ffffff;
+    background: #047857;
+    border: 1px solid #86efac;
+    box-shadow: 0 2px 8px rgba(4, 120, 87, 0.4);
   }
   .brandbar-left {
     display: flex;
@@ -496,6 +558,19 @@
     padding: 12px clamp(22px, 4vw, 64px) 96px;
     position: relative;
   }
+  .screen-stage:not(.home-stage) {
+    flex: 1 1 0%;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    width: 100vw;
+    max-width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
   .home-brandbar {
     height: 98px;
     padding: 18px clamp(34px, 6.5vw, 105px);
@@ -537,9 +612,10 @@
     min-height: calc(100svh - 98px);
     position: relative;
     display: grid;
-    grid-template-columns: minmax(410px, 45%) 1fr;
+    grid-template-columns: minmax(380px, 46%) 1fr;
     align-items: center;
-    padding: 20px clamp(34px, 9vw, 145px) 90px;
+    padding: 20px clamp(30px, 7vw, 120px) 90px;
+    gap: clamp(24px, 4.5vw, 64px);
   }
   .home-copy {
     position: relative;
@@ -643,6 +719,49 @@
   }
   .home-cta > svg:last-child {
     color: var(--secondary);
+  }
+  .home-hero-visual {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .home-hero-img-wrap {
+    position: relative;
+    max-width: min(580px, 100%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .home-hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: min(72vh, 580px);
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.6))
+      drop-shadow(0 0 28px rgba(16, 185, 129, 0.22));
+    transition:
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.4s ease;
+  }
+  .home-hero-img:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: drop-shadow(0 26px 48px rgba(0, 0, 0, 0.72))
+      drop-shadow(0 0 36px rgba(16, 185, 129, 0.32));
   }
   .glass-panel {
     background: linear-gradient(
@@ -1055,21 +1174,66 @@
     font-size: 30px;
   }
   .diseases-layout {
-    align-items: flex-start;
-    padding-top: 18px;
-    padding-bottom: 120px;
-    min-height: calc(100svh - 100px);
+    align-items: stretch;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: 1 1 0%;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    width: 100vw;
+    max-width: 100%;
+    overflow: hidden;
   }
   .disease-panel {
-    width: min(800px, calc(100vw - 90px));
-    padding: 20px;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-top: 1.5px solid rgba(134, 239, 172, 0.28) !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: linear-gradient(
+      180deg,
+      rgba(4, 38, 28, 0.88) 0%,
+      rgba(3, 26, 19, 0.94) 100%
+    ) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+  }
+  .panel-fixed-header {
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    padding: 22px clamp(20px, 5vw, 64px) 18px;
+    background: linear-gradient(
+      180deg,
+      rgba(2, 22, 16, 0.98) 0%,
+      rgba(3, 28, 20, 0.94) 80%,
+      rgba(4, 36, 26, 0.88) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(134, 239, 172, 0.22);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
   .disease-title {
     display: flex;
     text-align: left;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .disease-title > svg {
     margin: 0;
@@ -1082,9 +1246,34 @@
     font-size: 10px;
     margin-top: 2px;
   }
+  .panel-fixed-header .search-row {
+    margin-bottom: 0;
+  }
   .condition-list {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 20px clamp(20px, 5vw, 64px) 40px !important;
     display: grid;
-    gap: 5px;
+    gap: 10px;
+    align-content: start;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(134, 239, 172, 0.3) rgba(0, 0, 0, 0.15);
+  }
+  .condition-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .condition-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+  }
+  .condition-list::-webkit-scrollbar-thumb {
+    background: rgba(134, 239, 172, 0.28);
+    border-radius: 999px;
+  }
+  .condition-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(134, 239, 172, 0.5);
   }
   .condition {
     background: var(--glass-strong);
@@ -1313,6 +1502,11 @@
     min-height: calc(100svh - 75px);
     padding: 12px 16px 84px;
   }
+  .screen-stage:not(.home-stage) {
+    min-height: 0;
+    height: 100%;
+    padding: 0 !important;
+  }
   .side-quote,
   .care-mark,
   .balance-mark {
@@ -1329,7 +1523,8 @@
     display: none;
   }
   .disease-panel {
-    width: min(700px, 100%);
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .home-brandbar {
     padding: 14px 20px;
@@ -1340,12 +1535,17 @@
   .home-stage {
     min-height: calc(100svh - 75px);
     grid-template-columns: 1fr;
-    align-items: end;
-    padding: 80px 32px 120px;
+    align-items: center;
+    padding: 60px 32px 120px;
+    gap: 36px;
   }
   .home-copy {
     width: min(560px, 100%);
-    margin: 0;
+    margin: 0 auto;
+  }
+  .home-hero-visual {
+    max-width: 420px;
+    margin: 0 auto;
   }
   .home-kicker {
     font-size: 10px;
@@ -1390,34 +1590,20 @@
     width: 37px;
   }
   .brandbar nav button {
-    font-size: 0;
-    padding: 10px 13px;
-  }
-  .brandbar nav button::first-letter {
     font-size: 12px;
+    padding: 7px 11px;
+    white-space: nowrap;
   }
-  .brandbar nav button:nth-child(1)::after {
-    content: "Voice";
-    font-size: 10px;
-  }
-  .brandbar nav button:nth-child(2)::after {
-    content: "Care";
-    font-size: 10px;
-  }
-  .brandbar nav button:nth-child(3)::after {
-    content: "Health";
-    font-size: 10px;
-  }
-  .brandbar nav button:nth-child(4)::after {
-    content: "Chat";
-    font-size: 10px;
-  }
-  .voice-panel,
-  .disease-panel,
-  .chat-panel {
+  .voice-panel {
     width: 100%;
     padding: 18px 12px;
     border-radius: 20px;
+  }
+  .disease-panel,
+  .chat-panel {
+    width: 100% !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
   }
   .screen-title h1 {
     font-size: 31px;
@@ -1504,8 +1690,16 @@
   }
   .home-stage {
     min-height: calc(100svh - 66px);
-    padding: 215px 22px 100px;
-    align-items: end;
+    padding: 36px 20px 110px;
+    align-items: center;
+    gap: 30px;
+  }
+  .home-hero-visual {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .home-hero-img {
+    max-height: 280px;
   }
   .home-copy {
     text-shadow: 0 2px 15px var(--background);
@@ -1538,24 +1732,78 @@
   }
 }
 
+/* Full-screen, edge-to-edge layouts for all inner pages (Hospitals, Diseases, Medicines, Chat) */
+.screen-stage:not(.home-stage),
+.diseases-layout,
+.hospitals-layout,
+.conditions-layout,
+.medicines-layout,
 .chat-layout {
-  align-items: flex-start;
-  padding-top: 18px;
-  padding-bottom: 96px;
-  box-sizing: border-box;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  height: calc(100svh - 52px) !important;
+  max-height: calc(100svh - 52px) !important;
+  width: 100vw !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
 }
 
-.consult-panel {
-  width: min(980px, calc(100vw - 70px));
-  height: calc(100svh - 130px);
-  max-height: 860px;
-  min-height: 480px;
-  padding: 22px 24px 18px;
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow: hidden;
+.disease-panel,
+.hospital-panel,
+.conditions-panel,
+.medicines-panel,
+.consult-panel,
+.chat-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  gap: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 30, 22, 0.94) 0%,
+    rgba(2, 20, 15, 0.97) 100%
+  ) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+.panel-fixed-header,
+.chat-fixed-header {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 20 !important;
+  padding: 16px clamp(16px, 4vw, 48px) 14px !important;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 22, 16, 0.99) 0%,
+    rgba(3, 26, 19, 0.96) 80%,
+    rgba(4, 32, 23, 0.92) 100%
+  ) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(134, 239, 172, 0.22) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+  box-sizing: border-box !important;
 }
 .consult-head {
   flex-shrink: 0;
@@ -1636,30 +1884,58 @@
   font-size: 13px;
 }
 
-/* Readable list pages: diseases, medicines, hospitals */
-.disease-panel {
-  width: min(980px, calc(100vw - 70px));
-  padding: 26px 26px 30px;
-  height: auto;
-  min-height: 0;
-  overflow: visible;
-}
-.disease-title h1 {
-  font-size: 36px;
-}
-.disease-title p {
-  font-size: 15px;
-  margin-top: 4px;
-}
-.search-row.single {
-  grid-template-columns: minmax(0, 1fr);
-}
-.searchbox input,
-.citybox select {
-  font-size: 15px;
-}
+/* Condition list: exclusively scrollable within the panel */
 .condition-list {
-  gap: 10px;
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  padding: 18px clamp(16px, 4vw, 48px) 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(134, 239, 172, 0.35) rgba(0, 0, 0, 0.2);
+  box-sizing: border-box !important;
+}
+
+/* Consult screen pinned bottom composer */
+.consult-panel .composer {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 12px clamp(16px, 4vw, 48px) max(14px, env(safe-area-inset-bottom)) !important;
+  border-radius: 0 !important;
+  background: rgba(2, 20, 15, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-top: 1px solid rgba(134, 239, 172, 0.22) !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  min-height: 64px !important;
+}
+.consult-panel .composer input {
+  font-size: 15px !important;
+  flex: 1 1 auto !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(134, 239, 172, 0.25) !important;
+  border-radius: 999px !important;
+  padding: 10px 18px !important;
+  color: #fff !important;
+  outline: none !important;
+}
+.consult-panel .composer input:focus {
+  border-color: rgba(134, 239, 172, 0.6) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 .condition-head {
   min-height: 64px;
@@ -1800,7 +2076,26 @@
   margin-bottom: 4px;
 }
 
-/* Threat Badge Indicator in Condition Head: Small Circle */
+/* Threat Badge Indicator in Condition Head: Clear labeled pill with icon */
+.threat-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: "Outfit", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.threat-tag-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
 .threat-badge-pill {
   width: 12px;
   height: 12px;
@@ -1812,19 +2107,65 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .threat-badge-high {
-  background: #ef4444;
-  border: 1.5px solid #fca5a5;
-  box-shadow: 0 0 7px rgba(239, 68, 68, 0.65);
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  color: #fca5a5;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
 }
 .threat-badge-medium {
-  background: #f59e0b;
-  border: 1.5px solid #fcd34d;
-  box-shadow: 0 0 7px rgba(245, 158, 11, 0.65);
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  color: #fcd34d;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
 }
 .threat-badge-low {
-  background: #22c55e;
-  border: 1.5px solid #86efac;
-  box-shadow: 0 0 7px rgba(34, 197, 94, 0.65);
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(134, 239, 172, 0.6);
+  color: #86efac;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+/* Category Filter Chips in Fixed Header */
+.category-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.category-chips-row::-webkit-scrollbar {
+  display: none;
+}
+.category-chip {
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.category-chip:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(134, 239, 172, 0.35);
+}
+.category-chip.active {
+  color: #022c22;
+  background: #86efac;
+  border-color: #86efac;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(134, 239, 172, 0.35);
+}
+.conditions-count-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
 }
 
 /* Diseases & Symptoms Page: Dropdown Detail Sections (Reference Image Style with Cyan/Teal Colors) */
@@ -2035,42 +2376,66 @@
 }
 
 @media (max-width: 600px) {
+  .inner-brandbar {
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 10px !important;
+  }
+  .inner-brandbar .back-button {
+    width: 32px;
+    height: 32px;
+  }
+  .inner-brandbar .brand-logo-img {
+    width: 30px;
+    height: 30px;
+  }
+  .inner-brandbar nav {
+    gap: 3px;
+  }
+  .inner-brandbar nav button {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+  .screen-stage:not(.home-stage),
+  .diseases-layout,
+  .hospitals-layout,
+  .conditions-layout,
+  .medicines-layout,
+  .chat-layout {
+    height: calc(100svh - 48px) !important;
+    max-height: calc(100svh - 48px) !important;
+  }
   .disease-panel,
   .chat-panel,
   .consult-panel {
-    width: 100%;
-    padding: 18px 14px 22px;
+    width: 100% !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+  .panel-fixed-header {
+    padding: 12px 14px 10px;
+  }
+  .condition-list {
+    padding: 12px 12px 30px !important;
   }
   .disease-title h1 {
-    font-size: 27px;
+    font-size: 24px;
   }
   .disease-title p {
-    font-size: 13px;
+    font-size: 12px;
   }
   .condition-head {
     grid-template-columns: 26px 30px minmax(0, 1fr) 18px;
     padding: 10px 12px;
   }
   .condition-head h2 {
-    font-size: 17px;
+    font-size: 16px;
   }
   .condition-head p {
-    font-size: 13px;
+    font-size: 12.5px;
   }
   .detail-grid {
     grid-template-columns: 1fr;
     padding: 4px 12px 14px;
-  }
-  .brandbar nav button:nth-child(1)::after {
-    content: "Home";
-  }
-  .brandbar nav button:nth-child(2)::after {
-    content: "Care";
-  }
-  .brandbar nav button:nth-child(3)::after {
-    content: "Health";
-  }
-  .brandbar nav button:nth-child(4)::after {
-    content: "Meds";
   }
 }
