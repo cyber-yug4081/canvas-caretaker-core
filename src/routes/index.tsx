@@ -24,10 +24,17 @@ import { findAnswer, NOT_TRAINED, type Answer } from "../lib/charak-knowledge";
 import { medicines, diseases, splitList } from "../lib/medical-data";
 
 const BACKGROUND_IMAGE_URL =
-  "https://res.cloudinary.com/dbge8xram/image/upload/v1789050012/background_image_olitaq.jpg";
+  "https://res.cloudinary.com/qfs26zk0/image/upload/v1789058036/ChatGPT_Image_Sep_10_2026_10_01_27_PM.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: BACKGROUND_IMAGE_URL,
+      },
+    ],
     meta: [
       { title: "Sudha Setu | Ayurvedic Health Guidance" },
       {
@@ -149,17 +156,21 @@ function Brand({ view, setView }: { view: View; setView: (v: View) => void }) {
                   <span className="brand-char">U</span>
                   <span className="brand-char">D</span>
                   <span className="brand-char">H</span>
-                  <span className="brand-char">A</span>
+                  <span className="brand-char brand-char-accent">A</span>
                 </span>
                 <span className="brand-word-spacer" aria-hidden="true" />
                 <span className="brand-word">
                   <span className="brand-char">S</span>
                   <span className="brand-char">E</span>
-                  <span className="brand-char">T</span>
+                  <span className="brand-char brand-char-accent">T</span>
                   <span className="brand-char">U</span>
                 </span>
               </strong>
-              <small>Ancient Wisdom. Modern Care.</small>
+              <span className="brand-tagline-wrap">
+                <span className="tagline-tapered-line left" aria-hidden="true" />
+                <small className="brand-tagline">~by Team ALIC</small>
+                <span className="tagline-tapered-line right" aria-hidden="true" />
+              </span>
             </span>
           )}
         </ActionButton>
@@ -187,7 +198,7 @@ function HomeScreen({ setView }: { setView: (view: View) => void }) {
           Ayurveda <span>×</span> Technology <span>×</span> A Healthier Tomorrow
         </p>
         <h1 id="home-main-heading">
-          सर्वे सन्तु
+          <span className="sanskrit-lead">सर्वे सन्तु</span>
           <br />
           <em>निरामयाः</em>
         </h1>
@@ -639,6 +650,7 @@ function DiseasesScreen() {
                   <span
                     className={`threat-badge-pill threat-badge-${threat.level.toLowerCase()}`}
                     aria-label={`Threat level: ${threat.level}`}
+                    title={`Threat level: ${threat.level}`}
                   />
                   <ChevronDown />
                 </ActionButton>
